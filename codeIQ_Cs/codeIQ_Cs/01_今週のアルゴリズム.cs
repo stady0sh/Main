@@ -85,41 +85,26 @@ namespace codeIZ_C
         #region "異なる整数で作る逆三角形"
         public string 異なる整数で作る逆三角形Prosecc(string line)
         {
-            //int n = int.Parse(line);
-            int n = 3;
-            int 余力 = 5;
+            int n = int.Parse(line);
+            int 最大値 = 10;
             int[] firstList = new int[n];
-
-            // ループ
-            for (int i = 0;i < 3 + 余力; ++i)
-            {
-                for (int j = 0; j < 3 + 余力; ++j)
-                {
-                    if (i == j) { continue; }
-                    for (int k = 0; k < 3 + 余力; ++k)
-                    {
-                        if (j == k) { continue; }
-
-                        firstList[0] = i;
-                        firstList[1] = j;
-                        firstList[2] = k;
-
-                        //int[] newList = new int[]
-
-                        
-                    }
-                }
-            }
-
-
             
-            return "";
+            for (int i = 1;i <= 最大値; ++i)
+            {
+                firstList = firstList作成(n,i, 最大値);
+                if (firstList.Count() > 0) { break; }
+            }
+                        
+            return firstList.OrderBy(s => s).First().ToString();
         }
 
-        //public int[] CreateList(int n,int 余力)
-        //{
+        private int[] firstList作成(int n,int i,int 最大値)
+        {
+            int[] list = new int[n - 1];
 
-        //}
+
+            return list;
+        }
         #endregion
 
     }

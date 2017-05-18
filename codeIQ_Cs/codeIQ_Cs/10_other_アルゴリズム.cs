@@ -44,7 +44,6 @@ namespace codeIZ_C
                 default:
                     res = string.Empty;
                     break;
-
             }
 
             return res;
@@ -60,7 +59,7 @@ namespace codeIZ_C
             return res;
         }
         #endregion
-
+        
         #region "アルゴ２"
         /// <summary>
         /// 1～Nまでの二乗和を求める
@@ -76,6 +75,20 @@ namespace codeIZ_C
                 result += i * i;
             }
             
+            return result.ToString();
+        }
+        #endregion
+
+        #region "アルゴ２"
+        private String アルゴ３(string line)
+        {
+            int n = int.Parse(line);
+            int result = 0;
+            for (int i = 1; i <= n; ++i)
+            {
+                result += i * i;
+            }
+
             return result.ToString();
         }
         #endregion
