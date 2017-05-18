@@ -44,15 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extentions.cs" />
-    <Compile Include="other_アルゴリズム.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="10_other_アルゴリズム.cs" />
+    <Compile Include="00_Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Static置き換え.cs" />
-    <Compile Include="その他.cs" />
-    <Compile Include="プログラミング道場.cs" />
-    <Compile Include="今週のアルゴリズム.cs" />
-    <Compile Include="実力判定.cs" />
-    <Compile Include="鍋谷武典.cs" />
+    <Compile Include="09_その他.cs" />
+    <Compile Include="03_プログラミング道場.cs" />
+    <Compile Include="01_今週のアルゴリズム.cs" />
+    <Compile Include="02_実力判定.cs" />
+    <Compile Include="04_鍋谷武典.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
