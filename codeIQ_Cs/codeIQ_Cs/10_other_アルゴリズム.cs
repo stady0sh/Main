@@ -12,7 +12,8 @@ namespace codeIZ_C
         #region "Enum"
         public enum クラス
         {
-            アルゴ１
+            アルゴ１,
+            アルゴ２
         }
         #endregion
 
@@ -37,6 +38,9 @@ namespace codeIZ_C
                 case クラス.アルゴ１:
                     res = this.アルゴ１(line);
                     break;
+                case クラス.アルゴ２:
+                    res = this.アルゴ２(line);
+                        break;
                 default:
                     res = string.Empty;
                     break;
@@ -54,6 +58,25 @@ namespace codeIZ_C
 
 
             return res;
+        }
+        #endregion
+
+        #region "アルゴ２"
+        /// <summary>
+        /// 1～Nまでの二乗和を求める
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        private String アルゴ２(string line)
+        {
+            int n = int.Parse(line);
+            int result = 0;
+            for (int i = 1; i <= n; ++i)
+            {
+                result += i * i;
+            }
+            
+            return result.ToString();
         }
         #endregion
 

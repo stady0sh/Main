@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="05_数学の問題をプログラミングで解こう.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="10_other_アルゴリズム.cs" />
     <Compile Include="00_Program.cs" />
