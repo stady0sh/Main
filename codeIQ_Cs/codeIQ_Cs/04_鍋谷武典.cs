@@ -13,7 +13,8 @@ namespace codeIZ_C
         public enum クラス
         {
             正六角形の分割,
-            ＯはぴったりＸは無し
+            ＯはぴったりＸは無し,
+            正方形の分割
         }
         #endregion
 
@@ -40,6 +41,9 @@ namespace codeIZ_C
                     break;
                 case クラス.ＯはぴったりＸは無し:
                     res = this.ＯはぴったりＸは無しProsecc(line);
+                    break;
+                case クラス.正方形の分割:
+                    res = this.正方形の分割Prosecc(line);
                     break;
                 default:
                     res = string.Empty;
@@ -190,6 +194,70 @@ namespace codeIZ_C
         }
         #endregion
 
+
+        #region "正方形の分割"
+        private string 正方形の分割Prosecc(string line)
+        {
+            /*
+            【概要】
+            正方形があります。
+            正方形の頂点と、辺の三等分点を全部合わせて「注目Line」と呼びます。
+            注目Lineのうちのひとつを別の注目Lineと結んだ線分で、正方形を分割する、という操作を2回行います。
+            このとき、出来る図形が何角形になるのかを計算して下さい。
+
+            【入出力】
+            入力は
+            cj kf
+            のようになっています。
+            線分を示す文字列が 空白区切りで並んでいます。
+            線分を示す文字列は、右図にある端点を示す記号をならべたものです。
+            というわけで、cj kfは、右上図の黒い線の部分での分割を意味します。
+
+            出力は、
+            3,4,4,4
+            のような感じです。
+            出来上がる多角形の頂点数を、昇順にコンマ区切りで。
+            くれぐれも、昇順にソートすることをお忘れなきよう。
+            */
+            List<string> 注目Linelist = line.Trim().Split(' ').ToList<string>();
+            List<string> 図形list = new List<string>();
+
+            foreach (string 注目Line in 注目Linelist)
+            {
+
+            }
+            
+            return "";
+        }
+
+        private List<string> F(string 注目Line , List<string> 図形list)
+        {
+            List<string> 点list = new List<string>();
+            点list.Add(注目Line.Substring(0, 1));
+            点list.Add(注目Line.Substring(1, 1));
+
+            // 分割できるかどうかチェック
+            // （正方形の直線と、分割ラインが被っており、実質分割の必要が無いかもしれない為）
+            if (Is分割(点list)) { return 図形list; }
+            
+
+
+
+            return 図形list;
+        }
+
+        private Boolean Is分割(List<string> 点list)
+        {
+            List<int> 点数値list = new List<int>();
+            
+            foreach (string item in 点list)
+            {
+                点数値list.Add(int.Parse(Convert.ToString(Int32.Parse(item), 2)));
+            }
+
+            return (Math.Abs(点数値list[0] - 点数値list[1]) <= 3)? true : false ;
+        }  
+        #endregion
 
     }
 }
