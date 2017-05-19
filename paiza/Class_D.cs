@@ -14,8 +14,7 @@ namespace paiza
         {
             string result = "";
 
-
-
+            
 
             return result;
         }
