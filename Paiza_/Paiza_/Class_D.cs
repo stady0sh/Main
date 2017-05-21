@@ -60,24 +60,15 @@ namespace Paiza_
     }
     #endregion
 
-    #region "D067:スイッチのオンオフ"
-    static class Class_D_067
+    #region "D064:嘘つきの日"
+    static class Class_D_D064
     {
         public static void Execute(string line)
         {
             string result = string.Empty;
-            int n = int.Parse(line);
-            if (n % 2 == 0)
-            {
-                result = "OFF";
-            }
-            else
-            {
-                result = "ON";
-            }
 
 
-            Console.WriteLine(result);
+            Console.WriteLine(line.Replace("False", "True"));
         }
     }
     #endregion
@@ -106,4 +97,27 @@ namespace Paiza_
         }
     }
     #endregion
+
+    #region "D067:スイッチのオンオフ"
+    static class Class_D_067
+    {
+        public static void Execute(string line)
+        {
+            string result = string.Empty;
+            int n = int.Parse(line);
+            if (n % 2 == 0)
+            {
+                result = "OFF";
+            }
+            else
+            {
+                result = "ON";
+            }
+
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
 }

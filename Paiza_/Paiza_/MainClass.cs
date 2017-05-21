@@ -10,9 +10,9 @@ namespace Paiza_
     {
         static void Main(string[] args)
         {
-            //var line = System.Console.ReadLine().Trim();
-            //Class_C_C040.Execute(line);
-            Class_ロジサマ_3001.Execute();
+            var line = System.Console.ReadLine().Trim();
+            Class_D_D064.Execute(line);
+            //Class_D_D064.Execute();
 
             Console.ReadLine();
         }
