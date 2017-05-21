@@ -82,4 +82,28 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D065:エラーコードの分類"
+    static class Class_D_D065
+    {
+        public static void Execute(string line)
+        {
+            string result = string.Empty;
+            switch (line.Trim().Substring(0, 1))
+            {
+                case "2":
+                    result = "ok";
+                    break;
+                case "4":
+                    result = "error";
+                    break;
+                default:
+                    result = "unknown";
+                    break;
+            }
+
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
 }
