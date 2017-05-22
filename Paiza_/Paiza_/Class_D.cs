@@ -36,6 +36,53 @@ namespace Paiza_
     }
     #endregion
 
+    #region " D062:ひな祭り "
+    static class Class_D_D062
+    {
+        public static void Execute(string line)
+        {
+            List<string> list = line.Split(' ').ToList<string>();
+            List<string> ひな壇 = new List<string>();
+
+            Queue<string> 人形q = Init雛人形リスト();
+            foreach (var item in list)
+            {
+                int n = int.Parse(item);
+                string 雛人形列 = string.Empty;
+
+                for (int i = 0;i < n; ++i)
+                {
+                    雛人形列 = 雛人形列 + 人形q.Dequeue();
+                }
+
+                ひな壇.Add(雛人形列);
+            }
+
+            foreach (var item in ひな壇)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        static Queue<string> Init雛人形リスト()
+        {
+            Queue<string> 人形q = new Queue<string>();
+            人形q.Enqueue("A");
+            人形q.Enqueue("B");
+            人形q.Enqueue("C");
+            人形q.Enqueue("D");
+            人形q.Enqueue("E");
+            人形q.Enqueue("F");
+            人形q.Enqueue("G");
+            人形q.Enqueue("H");
+            人形q.Enqueue("I");
+            人形q.Enqueue("J");
+
+            return 人形q;
+        } 
+    }
+    #endregion
+
     #region "D063:お花見の場所取り 70点"
     static class Class_D_D063
     {

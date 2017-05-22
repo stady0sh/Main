@@ -10,9 +10,11 @@ namespace Paiza_
     #region "format"
     static class Class_C_format
     {
-        public static void Execute(string line)
+        public static void Execute()
         {
             string result = string.Empty;
+            var line = System.Console.ReadLine().Trim();
+            Class_D_D062.Execute(line);
 
 
             Console.WriteLine(result);
@@ -111,41 +113,62 @@ namespace Paiza_
     }
     #endregion
 
-    #region "C040:【ロジサマコラボ問題】背比べ"
-    static class Class_C_C040
+    #region "C038:お菓子の分配"
+    static class Class_C_C038
     {
-        public static void Execute(string line)
+        public static void Execute()
         {
-            int n = int.Parse(line);
-            float max = 200F;
-            float min = 100F;
+            //string result = string.Empty;
+            var line1 = System.Console.ReadLine().Trim();    // [M N] M:機械の数　N:容器の容量
+            List<string> list1 = line1.Split(' ').ToList<string>();
+            int m = int.Parse(list1[0]);    // 機械の数
+            int n = int.Parse(list1[1]);    // 容器の容量
 
-            for (int i = 0; i < n; ++i)
+            List<int> 機械list = new List<int>();
+            for ( int i = 0;i < m; ++i)
             {
-                string str = Console.ReadLine().Trim();
-                //if (i == n - 1) { break; } // 最終行の改行は無視
-                string[] list = str.Split(' ');
-
-                switch (list[0])
-                {
-                    case "le":  // 以下
-                        if (max > float.Parse(list[1]))
-                        {
-                            max = float.Parse(list[1]);
-                        }
-                        break;
-                    case "ge":  // 超過
-                        if (min < float.Parse(list[1]))
-                        {
-                            min = float.Parse(list[1]);
-                        }
-                        break;
-                }
+                機械list.Add(int.Parse(Console.ReadLine()));  // 各機械の梱包容量
             }
 
-            string result = $"{min:0.0} {max:0.0}";
+            int 容器 = 0;
+            int 余り = 0;
+            int tmp容器 = 0;
+            int tmp余り = 0;
+            int result = 0;
+            for (int i = 0;i < 機械list.Count(); ++i)
+            {
+                if (i == 0)
+                {
+                    容器 = 機械list[i];
+                    余り = (n % 機械list[i]);
+                    result = 1;
+                    continue;
+                }
+                else
+                {
+                    tmp容器 = 機械list[i];
+                    tmp余り = (n % 機械list[i]);
 
-            Console.WriteLine(result);
+                }
+
+                if (tmp余り > 余り)
+                {
+                    continue;
+                }
+                else
+                {
+                    if (tmp余り == 余り && tmp容器 <= 容器)
+                    {
+                        continue;
+                    }
+                    容器 = tmp容器;
+                    余り = tmp余り;
+                    result = i + 1;
+                }
+                
+            }
+            
+            Console.WriteLine(result.ToString());
         }
     }
     #endregion
@@ -186,5 +209,45 @@ namespace Paiza_
         }
     }
     #endregion
+
+    #region "C040:【ロジサマコラボ問題】背比べ"
+    static class Class_C_C040
+    {
+        public static void Execute(string line)
+        {
+            int n = int.Parse(line);
+            float max = 200F;
+            float min = 100F;
+
+            for (int i = 0; i < n; ++i)
+            {
+                string str = Console.ReadLine().Trim();
+                //if (i == n - 1) { break; } // 最終行の改行は無視
+                string[] list = str.Split(' ');
+
+                switch (list[0])
+                {
+                    case "le":  // 以下
+                        if (max > float.Parse(list[1]))
+                        {
+                            max = float.Parse(list[1]);
+                        }
+                        break;
+                    case "ge":  // 超過
+                        if (min < float.Parse(list[1]))
+                        {
+                            min = float.Parse(list[1]);
+                        }
+                        break;
+                }
+            }
+
+            string result = $"{min:0.0} {max:0.0}";
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
 
 }
