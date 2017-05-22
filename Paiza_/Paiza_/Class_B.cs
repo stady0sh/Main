@@ -19,7 +19,111 @@ namespace Paiza_
         }
     }
     #endregion
-    
+
+    #region "B037:【2017年お正月問題】幸運な1年"
+    static class Class_B_B037
+    {
+        public static void Execute()
+        {
+            Queue<string> 日付 = Init日付(Console.ReadLine().Trim());    // 日付を分解してQueueに格納
+            List<int> 乱数A = 分割(Console.ReadLine().Trim());    // 日付を分解してQueueに格納
+            List<int> 乱数B = 分割(Console.ReadLine().Trim());    // 日付を分解してQueueに格納
+            List<int> 乱数M = 分割(Console.ReadLine().Trim());    // 日付を分解してQueueに格納
+
+            int cnt = 0;
+            List<int> 乱数W = new List<int>();
+            List<int> 乱数Wtmp = new List<int>();
+            for (int i = 0; i < 10000; ++i)
+            {
+                if (乱数W.Count == 0)
+                {
+                    乱数W.Add(0);
+                    乱数W.Add(0);
+                    乱数W.Add(0);
+                    乱数W.Add(0);
+                }
+                Queue<string> 日付a = new Queue<string>(日付);
+                cnt = i + 1;
+                List<int> カード = new List<int>();
+                乱数Wtmp.Clear();
+                for (int j = 0; j < 4; ++j)
+                {
+                    //カード.Add(((乱数A[j] * 乱数W[j] + 乱数B[j]) % 乱数M[j])% 10);    // 乱数からカードを作成
+                    var 余り = ((乱数A[j] * 乱数W[j] + 乱数B[j]) % 乱数M[j]);
+                    乱数Wtmp.Add(余り);
+                    カード.Add(余り % 10);    // 乱数からカードを作成
+                }
+
+                List<int> カードa = new List<int>(カード);
+                if (カードチェック(日付a, カード))
+                {
+                    break;
+                }
+
+                乱数W.Clear();
+                foreach (var item in 乱数Wtmp)
+                {
+                    乱数W.Add(item);
+                }
+
+            }
+
+
+
+            Console.WriteLine(cnt.ToString());
+        }
+
+        static Queue<string> Init日付(string line)
+        {
+            Queue<string> result = new Queue<string>();
+            string[] s = line.Split(' ');
+            foreach (string item in s)
+            {
+                if (item.Length == 1)
+                {
+                    result.Enqueue("0");
+                    result.Enqueue(item.Substring(0, 1));
+                }
+                else
+                {
+                    result.Enqueue(item.Substring(0, 1));
+                    result.Enqueue(item.Substring(1, 1));
+                }
+            }
+            return result;
+        }
+
+        static List<int> 分割(string line)
+        {
+            List<int> list = new List<int>();
+            List<string> str = line.Split(' ').ToList();
+            foreach (var item in str)
+            {
+                list.Add(int.Parse(item));
+            }
+            return list;
+        }
+
+        static Boolean カードチェック(Queue<string> 日付, List<int> カード)
+        {
+            while (日付.Count > 0)
+            {
+                string s = 日付.Dequeue();
+                if (カード.Contains(int.Parse(s)))
+                {
+                    カード.Remove(int.Parse(s));
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+    #endregion
+
     #region "B040:【キャンペーン問題】たのしい暗号解読"
     static class Class_B_040
     {
@@ -180,5 +284,6 @@ namespace Paiza_
         }
     }
     #endregion
+
 
 }

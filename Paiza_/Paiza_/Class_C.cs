@@ -14,7 +14,6 @@ namespace Paiza_
         {
             string result = string.Empty;
             var line = System.Console.ReadLine().Trim();
-            Class_D_D062.Execute(line);
 
 
             Console.WriteLine(result);
@@ -109,6 +108,132 @@ namespace Paiza_
             {
                 Console.WriteLine(str);
             }
+        }
+    }
+    #endregion
+
+    #region "C033:野球の審判"
+    static class Class_C_C033
+    {
+        public static void Execute()
+        {
+            List<string> result = new List<string>();
+            var n = int.Parse(System.Console.ReadLine().Trim());
+
+            Queue<string> ストライク判定 = new Queue<string>();
+            Queue<string> ボール判定 = new Queue<string>();
+            for (int i = 0;i < n; ++i)
+            {
+                string str = Console.ReadLine().Trim();
+
+                if (str == "strike")
+                {
+                    if (ストライク判定.Count >= 2)
+                    {
+                        result.Add("out!");
+                        ストライク判定.Enqueue(str);
+                    }
+                    else
+                    {
+                        result.Add("strike!");
+                        ストライク判定.Enqueue(str);
+                    }
+                }
+                else if (str == "ball")
+                {
+                    if (ボール判定.Count >= 3)
+                    {
+                        result.Add("fourball!");
+                        ボール判定.Enqueue(str);
+                    }
+                    else
+                    {
+                        result.Add("ball!");
+                        ボール判定.Enqueue(str);
+                    }
+                }
+
+            }
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+    #endregion
+
+    #region "C034:先生の宿題"
+    static class Class_C_C034
+    {
+        public static void Execute()
+        {
+            var line = System.Console.ReadLine().Trim();    // "a op b = c"
+            string a = line.Substring(0, 1);
+            string op = line.Substring(2, 1);
+            string b = line.Substring(4, 1);
+            string c = line.Substring(8, 1);
+            int result = 0;
+            
+            if (c == "x")
+            {
+                if(op == "+")
+                {
+                    result = int.Parse(a) + int.Parse(b);
+                }
+                else
+                {
+                    result = int.Parse(a) - int.Parse(b);
+                }
+            }
+            else if (a == "x")
+            {
+                if (op == "+")
+                {
+                    result = int.Parse(c) - int.Parse(b);
+                }
+                else
+                {
+                    result = int.Parse(b) + int.Parse(c);
+                }
+            }
+            else 
+            {
+                if (op == "+")
+                {
+                    result = int.Parse(c) - int.Parse(a);
+                }
+                else
+                {
+                    result = int.Parse(a) - int.Parse(c);
+                }
+            }
+            
+            Console.WriteLine(result.ToString());
+        }
+    }
+    #endregion
+
+    #region "C037:アニメの日時"
+    static class Class_C_C037
+    {
+        public static void Execute()
+        {
+            string result = string.Empty;
+            var line = System.Console.ReadLine().Trim();    //  "MM/dd hh:mm" 
+            int 月 = int.Parse(line.Substring(0, 2));
+            int 日 = int.Parse(line.Substring(3, 2));
+            int 時 = int.Parse(line.Substring(6, 2));
+            int 分 = int.Parse(line.Substring(9, 2));
+
+            if (時 / 24 >= 1)
+            {
+                日 = 日 + (時 / 24);
+                時 = 時 % 24;
+            }
+
+            result = $"{月:00}/{日:00} {時:00}:{分:00}";
+            Console.WriteLine(result);
         }
     }
     #endregion
