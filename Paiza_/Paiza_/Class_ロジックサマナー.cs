@@ -99,7 +99,7 @@ namespace Paiza_
     }
     #endregion
 
-    #region "魔法陣　(封印レベルB)"
+    #region "魔法陣　(封印レベルB)　※あきらめた"
     static class Class_ロジサマ_2002
     { 
         public static void Execute()
@@ -122,7 +122,7 @@ namespace Paiza_
                 if (item.Sum() > max) { max = item.Sum(); }
             }
 
-            //横の比較（0が１つのもののみ）
+            //横の比較
             List<List<int>> resultList = new List<List<int>>();
             foreach (var item in list)
             {
@@ -136,50 +136,10 @@ namespace Paiza_
                 }
                 else if (item.Where(i2 => i2 == 0).Count() >= 2)
                 {
-                    //resultList.Clear();
                     resultList.Add(new List<int>(Update横List0有り(item, max, list)));
-                    break;
                 }
             }
-
-            //if (resultList.Count() == 0)
-            //{
-            //    //listの作成
-            //    for (int i = 0; i < list.Count(); ++i)
-            //    {
-            //        resultList.Add(new List<int>());
-            //    }
-
-            //    //縦の比較
-            //    for (int i = 0;i < list.Count(); ++i)
-            //    {
-            //        switch (GetCount列の0値(list, i)){
-            //            case 0:
-            //                var tmpList = Update縦List(list, i, max);
-            //                int cnt = 0;
-            //                foreach (var item in tmpList)
-            //                {
-            //                    resultList[cnt++].Add(item);
-            //                }
-            //                break;
-            //            case 1:
-            //                //resultList.Add(Update縦List(list, i, max));
-            //                var tmpList2 = Update縦List(list, i, max);
-            //                int cnt2 = 0;
-            //                foreach (var item in tmpList2)
-            //                {
-            //                    resultList[cnt2++].Add(item);
-            //                }
-            //                break;
-            //            default:
-            //                resultList.Clear();
-            //                break;
-
-            //        }
-            //    }
-
-            //}
-
+            
             // 結果表示
             foreach(var item in resultList)
             {
@@ -229,44 +189,7 @@ namespace Paiza_
             }
             return result;
         }
-
-        //static int GetCount列の0値(List<List<int>> list, int n)
-        //{
-        //    int cnt = 0;
-        //    for (int i = 0; i < list.Count(); ++i)
-        //    {
-        //        if (list[i][n] == 0) { ++cnt; }
-        //    }
-        //    return cnt;
-        //}
-
-        //static List<int> Update縦List(List<List<int>> list, int n ,int max)
-        //{
-        //    List<int> resultList = new List<int>();
-        //    //for (int i = 0; i < list.Count(); ++i)
-        //    //{
-        //    //    resultList.Add(new List<int>());
-        //    //}
-        //    for (int i = 0; i < list.Count(); ++i)
-        //    {
-        //        if (list[i][n] == 0)
-        //        {
-        //            int sm = 0;
-        //            for (int j = 0; j < list.Count(); ++j)
-        //            {
-        //                sm += list[j][n];
-        //            }
-        //            resultList.Add(max - sm);
-
-        //        }
-        //        else
-        //        {
-        //            resultList.Add(list[i][n]);
-        //        }
-        //    }
-        //    return resultList;
-        //}
-
+        
     }
     #endregion
 
