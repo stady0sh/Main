@@ -12,7 +12,7 @@ namespace Paiza_
         {
             //var line = System.Console.ReadLine().Trim();
             //Class_D_D062.Execute(line);
-            Class_C_C032.Execute();
+            Class_ロジサマ_2002.Execute();
 
             Console.ReadLine();
         }
