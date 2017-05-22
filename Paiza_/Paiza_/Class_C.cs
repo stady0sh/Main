@@ -112,6 +112,60 @@ namespace Paiza_
     }
     #endregion
 
+    #region "C032:お得な買い物"
+    static class Class_C_C032
+    {
+        public static void Execute()
+        {
+            var n = int.Parse(System.Console.ReadLine().Trim());
+            Dictionary<string,int> 集計リスト = Init集計リスト();
+            Dictionary<string, int> ポイントリスト = Initポイントリスト();
+
+            for (int i = 0;i < n; ++i)
+            {
+                string[] str = Console.ReadLine().Trim().Split(' ');
+                string 種類 = str[0];
+                int  金額 = int.Parse(str[1]);
+
+                集計リスト[種類] += 金額;
+
+            }
+
+            int result = 0;
+            foreach(var item in 集計リスト)
+            {
+                if (item.Value > 0)
+                {
+                    var a = ポイントリスト[item.Key];
+                    result += (item.Value / 100 ) * ポイントリスト[item.Key];
+                }
+            }
+
+            Console.WriteLine(result.ToString());
+        }
+
+        static Dictionary<string,int> Init集計リスト()
+        {
+            Dictionary<string, int> 集計リスト = new Dictionary<string, int>();
+            集計リスト.Add("0", 0);
+            集計リスト.Add("1", 0);
+            集計リスト.Add("2", 0);
+            集計リスト.Add("3", 0);
+            return 集計リスト;
+        }
+
+        static Dictionary<string, int> Initポイントリスト()
+        {
+            Dictionary<string, int> ポイントリスト = new Dictionary<string, int>();
+            ポイントリスト.Add("0", 5);
+            ポイントリスト.Add("1", 3);
+            ポイントリスト.Add("2", 2);
+            ポイントリスト.Add("3", 1);
+            return ポイントリスト;
+        }
+    }
+    #endregion
+
     #region "C033:野球の審判"
     static class Class_C_C033
     {
