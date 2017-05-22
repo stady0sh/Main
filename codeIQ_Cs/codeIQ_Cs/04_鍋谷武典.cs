@@ -193,8 +193,7 @@ namespace codeIZ_C
             return board;
         }
         #endregion
-
-
+        
         #region "正方形の分割"
         private string 正方形の分割Prosecc(string line)
         {
@@ -249,13 +248,16 @@ namespace codeIZ_C
         private Boolean Is分割(List<string> 点list)
         {
             List<int> 点数値list = new List<int>();
-            
-            foreach (string item in 点list)
-            {
-                点数値list.Add(int.Parse(Convert.ToString(Int32.Parse(item), 2)));
-            }
+            List<string> 辺1 = new List<string>() { "A", "B", "C", "D" };
+            List<string> 辺2 = new List<string>() { "D", "E", "F", "G" };
+            List<string> 辺3 = new List<string>() { "G", "H", "I", "J" };
+            List<string> 辺4 = new List<string>() { "J", "K", "L", "A" };
 
-            return (Math.Abs(点数値list[0] - 点数値list[1]) <= 3)? true : false ;
+            return ((辺1.Contains(点list[0]) && 辺1.Contains(点list[1])) ||
+                    (辺2.Contains(点list[0]) && 辺2.Contains(点list[1])) ||
+                    (辺3.Contains(点list[0]) && 辺3.Contains(点list[1])) ||
+                    (辺4.Contains(点list[0]) && 辺4.Contains(点list[1]))) ? true : false;
+            
         }  
         #endregion
 

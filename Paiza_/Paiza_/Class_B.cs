@@ -9,8 +9,9 @@ namespace Paiza_
     #region "format"
     static class Class_B_format
     {
-        public static void Execute(string line)
+        public static void Execute()
         {
+            string line = Console.ReadLine().Trim();
             string result = string.Empty;
 
 
@@ -18,8 +19,7 @@ namespace Paiza_
         }
     }
     #endregion
-
-
+    
     #region "B040:【キャンペーン問題】たのしい暗号解読"
     static class Class_B_040
     {
@@ -95,5 +95,90 @@ namespace Paiza_
         }
     }
     #endregion
-    
+
+    #region "B041:繰り返し模様 "
+    static class Class_B_B041
+    {
+        public static void Execute()
+        {
+            int k = int.Parse(Console.ReadLine().Trim());
+            int n = int.Parse(Console.ReadLine().Trim());
+            string result = string.Empty;
+
+            // 図形の取得
+            List<string> list = new List<string>();
+            for (int i = 0;i < n; ++i)
+            {
+                list.Add(Console.ReadLine().Trim());
+            }
+
+            // 生成
+            for (int j = 1;j <= k; ++j)
+            {
+                int cnt = 0;
+                List<string> newList = new List<string>();
+                // List = #..
+                //        ##.
+                //        ###
+                foreach (var item in list)
+                {
+                    // item = #..
+                    List<List<string>> tmpList = new List<List<string>>();
+                    // tmpListのコンストラクタ
+                    for (int q = 0; q < item.Length; ++q)
+                    {
+                        tmpList.Add(new List<string>());
+                    }
+
+                    for (int m = 0;m < item.Length; ++m)
+                    {
+
+                        int o = 0;
+                        if (item.Substring(m, 1) == ".")
+                        {
+                            //for (int o = 0 ; o < item.Length; ++o)
+                            //{
+                            //    tmpList[o].Add(item.Replace('#','.'));
+                            //}
+                            foreach (var item2 in list)
+                            {
+                                tmpList[o++].Add(item2.Replace('#', '.'));
+                            }
+                        }
+                        else
+                        {
+                            //for (int o = 0; o < item.Length; ++o)
+                            //{
+                            //    tmpList[o].Add(item);
+                            //}
+                            foreach (var item2 in list)
+                            {
+                                tmpList[o++].Add(item2);
+                            }
+                        }
+                        
+                    }
+
+                    foreach (var item2 in tmpList)
+                    {
+                        newList.Add(string.Join("", item2));
+                    }
+
+                    ++cnt;
+                }
+
+                list = newList;
+                
+            }
+
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+            
+        }
+    }
+    #endregion
+
 }

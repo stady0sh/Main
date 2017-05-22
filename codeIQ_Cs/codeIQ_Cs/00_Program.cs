@@ -34,9 +34,10 @@ namespace codeIZ_C
             鍋谷武典 cls = new 鍋谷武典(鍋谷武典.クラス.正方形の分割);
             //今週のアルゴリズム_14 cls = new 今週のアルゴリズム_14(今週のアルゴリズム_14.クラス.素数列から抜き出してつぶやこう);
             //other_アルゴリズム cls = new other_アルゴリズム(other_アルゴリズム.クラス.アルゴ２);
+            return _06_プログラミング部.問題01.Execution(line);
 
 
-            return cls.Execution(line);
+            //return cls.Execution(line);
 
 
             //return Ａランク小銭王子.Execution(line);
