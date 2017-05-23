@@ -20,6 +20,62 @@ namespace Paiza_
     }
     #endregion
 
+    #region "B035:ジョギングランキング"
+    static class Class_B_B035
+    {
+        public static void Execute()
+        {
+            string line1 = Console.ReadLine().Trim();
+            List<string> line1List = line1.Split(' ').ToList();
+            int N = int.Parse(line1List[0]);    // 部員の人数
+            int M = int.Parse(line1List[1]);    // 今月のジョギング記録の数
+            int T = int.Parse(line1List[2]);    // 成績表に表示される上位の人数
+
+            Dictionary<string, int> 先月の記録 = new Dictionary<string, int>();
+            Dictionary<string, int> 今月の記録 = new Dictionary<string, int>();
+            for (int i = 0;i < N; ++i)
+            {
+                string[] 先月の記録配列 = Console.ReadLine().Trim().Split(' ');
+                先月の記録.Add(先月の記録配列[0], int.Parse(先月の記録配列[1]));
+                今月の記録.Add(先月の記録配列[0], 0);
+            }
+
+            for (int i = 0; i < M; ++i)
+            {
+                string[] 今月の記録配列 = Console.ReadLine().Trim().Split(' ');
+                今月の記録[今月の記録配列[1]] += int.Parse(今月の記録配列[2]);
+            }
+            
+            var 先月成績list = 先月の記録.OrderByDescending(s => s.Value).ThenBy(s => s.Key).Take(T).Select((c,i) => new { Content = c, Index = i });
+            var 成績list = 今月の記録.OrderByDescending(s => s.Value).ThenBy(s => s.Key).Take(T).Select((c, i) => new { Content = c, Index = i });
+
+            foreach (var item in 成績list)
+            {
+                string result = string.Empty;
+                if (先月成績list.Where(s => s.Content.Key == item.Content.Key).Count() == 0)
+                {
+                    result = "new";
+                }
+                else if (先月成績list.Where(c => c.Content.Key == item.Content.Key).First().Index > item.Index)
+                {
+                    result = "up";
+                }
+                else if (先月成績list.Where(c => c.Content.Key == item.Content.Key).First().Index < item.Index)
+                {
+                    result = "down";
+                }
+                else if (先月成績list.Where(c => c.Content.Key == item.Content.Key).First().Index == item.Index)
+                {
+                    result = "same";
+                }
+
+                Console.WriteLine($"{item.Content.Key} {item.Content.Value} {result}");
+            }
+
+        }
+    }
+    #endregion
+
     #region "B037:【2017年お正月問題】幸運な1年"
     static class Class_B_B037
     {
@@ -240,10 +296,6 @@ namespace Paiza_
                         int o = 0;
                         if (item.Substring(m, 1) == ".")
                         {
-                            //for (int o = 0 ; o < item.Length; ++o)
-                            //{
-                            //    tmpList[o].Add(item.Replace('#','.'));
-                            //}
                             foreach (var item2 in list)
                             {
                                 tmpList[o++].Add(item2.Replace('#', '.'));
@@ -251,10 +303,6 @@ namespace Paiza_
                         }
                         else
                         {
-                            //for (int o = 0; o < item.Length; ++o)
-                            //{
-                            //    tmpList[o].Add(item);
-                            //}
                             foreach (var item2 in list)
                             {
                                 tmpList[o++].Add(item2);

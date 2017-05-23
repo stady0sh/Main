@@ -36,6 +36,28 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D061:3倍返し？"
+    static class Class_D_D061
+    {
+        public static void Execute()
+        {
+            int n = int.Parse(Console.ReadLine());
+            int r = 0;
+
+            if (n == 0)
+            {
+                r = 1;
+            }
+            else
+            {
+                r = n * 3;
+            }
+
+            Console.WriteLine(r.ToString());
+        }
+    }
+    #endregion
+
     #region " D062:ひな祭り "
     static class Class_D_D062
     {
