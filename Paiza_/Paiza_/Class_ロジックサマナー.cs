@@ -99,6 +99,99 @@ namespace Paiza_
     }
     #endregion
 
+    #region "魔法陣　(封印レベルB)　※あきらめた"
+    static class Class_ロジサマ_2002
+    { 
+        public static void Execute()
+        {
+            int n = int.Parse(Console.ReadLine().Trim());  //ループ回数
+            List<List<int>> list = new List<List<int>>();
+            for (int i = 0; i < n; ++i)
+            {
+                List<string> 数値list = Console.ReadLine().Trim().Split(' ').ToList();
+                list.Add(new List<int>());
+                for (int j = 0;j < n; ++j)
+                {
+                    list[i].Add(int.Parse(数値list[j])); 
+                }
+            }
+
+            int max = 0;    // 魔法陣の1行の和を求める
+            foreach (var item in list)
+            {
+                if (item.Sum() > max) { max = item.Sum(); }
+            }
+
+            //横の比較
+            List<List<int>> resultList = new List<List<int>>();
+            foreach (var item in list)
+            {
+                if (item.Where(i2 => i2 == 0).Count() == 1)
+                {
+                    resultList.Add(new List<int>(Update横List(item,max)));
+                }
+                else if (item.Where(i2 => i2 == 0).Count() == 0)
+                {
+                    resultList.Add(new List<int>(item));
+                }
+                else if (item.Where(i2 => i2 == 0).Count() >= 2)
+                {
+                    resultList.Add(new List<int>(Update横List0有り(item, max, list)));
+                }
+            }
+            
+            // 結果表示
+            foreach(var item in resultList)
+            {
+                Console.WriteLine(string.Join(" ", item));
+            }
+        }
+
+        static List<int> Update横List(List<int> list, int max)
+        {
+            List<int> result = new List<int>();
+            int x = max - list.Sum();
+            foreach (var item in list)
+            {
+                if (item == 0)
+                {
+                    result.Add(x);
+                }
+                else
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+
+        static List<int> Update横List0有り(List<int> items, int max, List<List<int>> list)
+        {
+            List<int> result = new List<int>();
+            int x = max - items.Sum();
+            int row = 0;
+            foreach (var item in items)
+            {
+                if (item == 0)
+                {
+                    int 列total = 0;
+                    for (int i = 0;i < list.Count(); ++i)
+                    {
+                        列total += list[i][row];
+                    }
+                    result.Add(max - 列total);
+                }
+                else
+                {
+                    result.Add(item);
+                }
+                row++;
+            }
+            return result;
+        }
+        
+    }
+    #endregion
 
 
 
