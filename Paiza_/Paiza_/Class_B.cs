@@ -20,6 +20,82 @@ namespace Paiza_
     }
     #endregion
 
+    #region "B034:ロボットの歩行実験"
+    static class Class_B_B034
+    {
+        static Dictionary<string, int> 方向数値 = new Dictionary<string, int>() { { "F", 0 }, { "R", 1 }, { "B", 2 }, { "L", 3 } };
+
+        public static void Execute()
+        {
+            // ｜
+            // ｜  △（x, y)スタート　上向き
+            // ｜
+            // └――――
+            string[] line1 = Console.ReadLine().Trim().Split(' ');  // 座標
+            Dictionary<string,int> 座標 = new Dictionary<string, int>();  // 0:x 1:y
+            座標["X"] = int.Parse(line1[0]);
+            座標["Y"] = int.Parse(line1[1]);
+
+            int 向き = 0; // Index 
+            int new向き = 0; // Index:0から前方向、右方向、後方向、左方向
+
+            string line2 = Console.ReadLine().Trim();   
+            List<int> 移動可能距離 = line2.Split(' ').Select(s => int.Parse(s)).ToList(); // Index:0から前方向、右方向、後方向、左方向
+
+            int n = int.Parse(Console.ReadLine().Trim());           // 命令数
+            for (int i = 0;i < n; ++i)
+            {
+                string[] line3 = Console.ReadLine().Trim().Split(' ');   // 命令[m(移動),t(方向転換)] 移動方向/転換方向=[F,R,B,L]
+                string 命令 = line3[0];
+                string 方向 = line3[1];
+
+                switch (命令)
+                {
+                    case "m": // 移動
+                        座標 = 移動する(座標, 移動可能距離, 方向, 向き,out new向き);
+                        向き = new向き;
+                        break;
+                    case "t": // 方向転換
+                        向き = 方向転換する(方向, 向き);
+                        break;
+
+                }
+
+            }
+            
+            Console.WriteLine($"{座標["X"]} {座標["Y"]}");
+        }
+
+        static Dictionary<string, int> 移動する(Dictionary<string, int> 座標, List<int> 移動可能距離, string 方向,int 向き,out int new向き)
+        {
+            Dictionary<string, int> new座標 = new Dictionary<string, int>(座標);  // 0:x 1:y
+            new向き = 向き; // 変わらない
+            switch ((方向数値[方向] + (向き + 4)) % 4)    // +4は0除算回避の為
+            {
+                case 0:   // 北
+                    new座標["Y"] = new座標["Y"] + 移動可能距離[方向数値[方向]];
+                    break;
+                case 1:   // 東
+                    new座標["X"] = new座標["X"] + 移動可能距離[方向数値[方向]];
+                    break;
+                case 2:   // 南
+                    new座標["Y"] = new座標["Y"] - 移動可能距離[方向数値[方向]];
+                    break;
+                case 3:   // 西
+                    new座標["X"] = new座標["X"] - 移動可能距離[方向数値[方向]];
+                    break;
+            }
+
+            return new座標;
+        }
+
+        static int 方向転換する(string 方向, int 向き)
+        {
+            return 方向数値[方向] + 向き;
+        }
+    }
+    #endregion
+
     #region "B035:ジョギングランキング"
     static class Class_B_B035
     {
