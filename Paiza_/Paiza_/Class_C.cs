@@ -268,6 +268,51 @@ namespace Paiza_
     }
     #endregion
 
+    #region "C035:試験の合格判定"
+    static class Class_C_C035
+    {
+        public static void Execute()
+        {
+            int n = int.Parse(Console.ReadLine().Trim());   //系は "l" ("L" の小文字)、理系は "s" 
+
+            int cnt = 0;
+            for (int i = 0;i < n; ++i)
+            {
+                // t_i と、英語、数学、理科、国語、地理歴史
+                string line = Console.ReadLine().Trim();
+                string 科目 = line.Substring(0, 1);
+                List<int> list = line.Substring(2).Split(' ').Select(s => int.Parse(s)).ToList();
+
+                if (list.Sum() < 350)
+                {
+                    continue;
+                }
+
+                switch (科目)
+                {
+                    case "s":
+                        if (list[1] + list[2] < 160)
+                        {
+                            continue;
+                        }
+                        break;
+                    case "l":
+                        if (list[3] + list[4] < 160)
+                        {
+                            continue;
+                        }
+                        break;
+
+                }
+
+                ++cnt;
+            }
+
+            Console.WriteLine(cnt.ToString());
+        }
+    }
+    #endregion
+
     #region "C037:アニメの日時"
     static class Class_C_C037
     {
