@@ -9,11 +9,12 @@ namespace Paiza_
     #region "format"
     static class Class_ロジサマ_format
     {
-        public static void Execute(string line)
+        public static void Execute()
         {
-            string result = string.Empty;
-            
-            Console.WriteLine(result);
+            string line1 = Console.ReadLine().Trim();
+
+
+            Console.WriteLine("");
         }
     }
     #endregion
@@ -193,6 +194,186 @@ namespace Paiza_
     }
     #endregion
 
+    #region "魔法陣　(封印レベルB) ※再※"
+    static class Class_ロジサマ_2002_2
+    {
+        public static void Execute()
+        {
+            int n = int.Parse(Console.ReadLine().Trim());
 
+            // 魔法陣作成
+            List<List<int>> list = new List<List<int>>();
+            for (int i = 0;i < n; ++i)
+            {
+                int[] line = Console.ReadLine().Trim().Split(' ').Select(s => int.Parse(s)).ToArray();
+                list.Add(new List<int>());
+                for (int j = 0;j < line.Length; ++j)
+                {
+                    list[i].Add(line[j]);
+                }
+            }
+
+            // 魔法陣の一列の和
+            int max = n * (n * n + 1) / 2;
+            for (int i = 0;i < n; ++i)
+            {
+                if (list[i].Sum() == max) { continue; }
+                if (list[i].Where(s => s == 0).Count() == 1)
+                {
+                    int ind = list[i].IndexOf(0);
+                    list[i][ind] = max - list[i].Sum(); 
+                }
+                else
+                {
+                    while (list[i].IndexOf(0) != -1)
+                    {
+                        int ind = list[i].IndexOf(0);
+                        int clm = 0;
+                        for (int k = 0;k < n; ++k)
+                        {
+                            clm += list[k][ind];    // 列の合計値を取得
+                        }
+                        list[i][ind] = max - clm;
+
+                    }
+                }
+            }
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(string.Join(" ",item));
+            }
+
+        }
+    }
+    #endregion
+
+    #region "オートチャージ　(封印レベルC)"
+    static class Class_ロジサマ_3002
+    {
+        public static void Execute()
+        {
+            string[] line1list = Console.ReadLine().Trim().Split(' ');
+            int n = int.Parse(line1list[0]);
+            int 体力 = int.Parse(line1list[1]);
+            int 閾値 = int.Parse(line1list[2]);
+            int 回復量 = int.Parse(line1list[3]);
+
+            List<int> ダメージList = Console.ReadLine().Trim().Split(' ').Select(s => int.Parse(s)).ToList();
+            foreach(var item in ダメージList)
+            {
+                体力 += item;
+                if (体力 <= 閾値)
+                {
+                    体力 += 回復量;
+                }
+            }
+                        
+            Console.WriteLine(体力.ToString());  // ダメージと回復の件数 n、最初の体力 m、自動回復のしきい値 a, 回復量 b 
+
+
+        }
+    }
+    #endregion
+
+    #region "装備品　(封印レベルD)"
+    static class Class_ロジサマ_4001
+    {
+        public static void Execute()
+        {
+            float[] line1 = Console.ReadLine().Trim().Split(' ').Select(s => float.Parse(s)).ToArray();
+            float[] line2 = Console.ReadLine().Trim().Split(' ').Select(s => float.Parse(s)).ToArray();
+
+
+            Console.WriteLine((line1[0] / line1[1] > line2[0] / line2[1])? line1[1]:line2[1]) ;
+        }
+    }
+    #endregion
+
+    #region "回復アイテムを揃えろ　(封印レベルD)"
+    static class Class_ロジサマ_4002
+    {
+        public static void Execute()
+        {
+            List<int> line1 = Console.ReadLine().Trim().Split(' ').Select(s => int.Parse(s)).ToList();
+
+
+            Console.WriteLine(line1[0] * line1[1]);
+        }
+    }
+    #endregion
+
+    #region "回復の呪文　(封印レベルD)"
+    static class Class_ロジサマ_4003
+    {
+        public static void Execute()
+        {
+            string line1 = Console.ReadLine().Trim();
+            int 体力 = (int.Parse(line1) + 50);
+
+            Console.WriteLine((体力 > 100)? 100 : 体力);
+        }
+    }
+    #endregion
+
+    #region "ログの結合　(封印レベルC)"
+    static class Class_ロジサマ_4004
+    {
+        public static void Execute()
+        {
+            int n = int.Parse(Console.ReadLine().Trim());
+            Dictionary<string, string> list = new Dictionary<string, string>();
+            for (int i = 0;i < n; ++i)
+            {
+                string[] line = Console.ReadLine().Trim().Split(' '); 
+                if (list.ContainsKey(line[0]))
+                {
+                    list[line[0]] += line[1];
+                }
+                else
+                {
+                    list.Add(line[0], line[1]);
+                }
+            }
+
+            foreach (var item in list)
+                {
+                //Console.WriteLine(string.Join(" ",item));
+                Console.WriteLine($"{item.Key} {item.Value}");
+
+            }
+        }
+    }
+    #endregion
+
+    #region "ダメージ床　(封印レベルD)"
+    static class Class_ロジサマ_3003
+    {
+        public static void Execute()
+        {
+            List<int> line1 = Console.ReadLine().Trim().ToCharArray().Select(s => int.Parse(s.ToString())).ToList();
+            int vit = int.Parse(Console.ReadLine().Trim());
+                
+            Console.WriteLine((vit - line1.Sum() > 0)? (vit - line1.Sum()).ToString():"No");
+        }
+    }
+    #endregion
+
+    #region "魔法の呪文　(封印レベルS)"
+    static class Class_ロジサマ_4005
+    {
+        public static void Execute()
+        {
+            string[] line = Console.ReadLine().Trim().Split(' ');
+            int H = int.Parse(line[0]);
+            int W = int.Parse(line[1]);
+            int N = int.Parse(line[2]);
+
+            List<int
+
+            Console.WriteLine("");
+        }
+    }
+    #endregion
 
 }
