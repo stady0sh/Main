@@ -36,6 +36,33 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D055:ワインのキャッチコピー"
+    static class Class_D_D055
+    {
+        public static void Execute()
+        {
+            string result = Console.ReadLine().Trim();
+
+
+            Console.WriteLine($"Best in {result}");
+        }
+    }
+    #endregion
+
+    #region "D056:かまくらづくり"
+    static class Class_D_D056
+    {
+        public static void Execute()
+        {
+            int[] line = Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToArray();
+            int result = Convert.ToInt32(Math.Pow(line[0], 3) - Math.Pow(line[1], 3));
+
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
     #region "D059:トランプ占い"
     static class Class_D_D059
     {

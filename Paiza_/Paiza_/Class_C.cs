@@ -112,6 +112,45 @@ namespace Paiza_
     }
     #endregion
 
+    #region "C029:旅行の計画"
+    static class Class_C_C029
+    {
+        public static void Execute()
+        {
+            int[] line = System.Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToArray();
+            int M = line[0];    // 連休日数
+            int N = line[1];    // 旅行日数
+            Dictionary<int, int> 日程 = new Dictionary<int, int>();   //0:日付 1:降水確率
+            for (int i = 0;i < M; ++i)
+            {
+                int[] line2 = System.Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToArray();
+                日程.Add(line2[0], line2[1]);
+            }
+            int 連休初日 = 日程.First().Key;
+
+
+            Dictionary<int, int> 降水確率List = new Dictionary<int, int>(); // 0:初日の日数 1:合計降水確率
+            for (int i = 連休初日; i < 連休初日 + M - (N - 1); ++i)
+            {
+                降水確率List.Add(i, 降水確率算出(日程, i, N));
+            }
+
+            var result = 降水確率List.OrderBy(s => s.Value).ThenBy(s => s.Key).First();
+            Console.WriteLine($"{result.Key} {result.Key + (N - 1)}");
+        }
+
+        static int 降水確率算出(Dictionary<int, int> 日程,int 開始Index,int 日数)
+        {
+            int total = 0;
+            for (int i = 開始Index;i < 開始Index + 日数; ++i)
+            {
+                total += 日程[i];
+            }
+            return total;
+        }
+    }
+    #endregion
+
     #region "C030:白にするか黒にするか"
     static class Class_C_C030
     {

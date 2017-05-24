@@ -10,7 +10,7 @@ namespace Paiza_
     {
         static void Main(string[] args)
         {
-            Class_B_B033.Execute();
+            Class_C_C029.Execute();
 
             Console.ReadLine();
         }
