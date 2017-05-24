@@ -20,6 +20,78 @@ namespace Paiza_
     }
     #endregion
 
+    #region "B033:テーブルジェネレーター"
+    static class Class_B_B033
+    {
+        public static void Execute()
+        {
+            // 例
+            // | id | name |
+            // | ----| ------------|
+            // | 1 | ito |
+            // | 2 | sakakibara |
+            // | 3 | takahashi |
+            List<List<string>> データList = new List<List<string>>();
+            int W = int.Parse(Console.ReadLine().Trim());   // 見出しの個数
+            List<string> headerList = Console.ReadLine().Trim().Split(' ').ToList();
+            foreach(var item in headerList)
+            {
+                データList.Add(new List<string>() { item });   // ヘッダデータを格納
+            }
+
+            int H = int.Parse(Console.ReadLine().Trim());   // データ行数
+            int index = 0;
+            for (int i = 0;i < H; ++i)
+            {
+                List<string> dataList = Console.ReadLine().Trim().Split(' ').ToList();
+
+                foreach (var item in dataList)
+                {
+                    データList[index++].Add(item);
+                }
+                index = 0;
+            }
+
+            // 各列の必要列数の取得
+            List<int> 列数List = new List<int>();
+            foreach (var item in データList)
+            {
+                //列数List.Add(item.OrderByDescending(s => s).First().Length + 2);  // 各列の文字数 + 前後の1文字
+                列数List.Add(item.OrderByDescending(s => s.Length).First().Length);  // 各列の文字数
+            }
+
+            // OUTPUT
+            int cnt = 1;
+            StringBuilder outLine;
+            for(int i = 0;i < H + 1; ++i)
+            {
+                // 2行目　（ヘッダと明細の区切り）のみ実行
+                while (cnt == 2)
+                {
+                    outLine = new StringBuilder();
+                    for (int j = 0; j < W; ++j)
+                    {
+                        outLine.Append("|-" + "-".PadRight(列数List[j], '-') + "-");
+                    }
+                    outLine.Append("|");
+                    Console.WriteLine(outLine);
+                    ++cnt;
+                }
+
+                outLine = new StringBuilder();
+                for (int j = 0;j < W; ++j)
+                {
+                    outLine.Append("| " + データList[j][i].PadRight(列数List[j], ' ') + " ");
+                }
+                outLine.Append("|");
+                Console.WriteLine(outLine);
+                ++cnt;
+            }
+
+        }
+    }
+    #endregion
+
     #region "B034:ロボットの歩行実験"
     static class Class_B_B034
     {

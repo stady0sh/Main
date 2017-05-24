@@ -131,7 +131,6 @@ namespace Paiza_
                 foreach (var item in line2list)
                 {
                     result[cnt].Add((item >= 128) ? 1 : 0);
-                    result[cnt].Add((item >= 128) ? 1 : 0);
                 }
                 ++cnt;
             }
