@@ -9,7 +9,7 @@ namespace Paiza_
     #region "format"
     static class Class_D_format
     {
-        public static void Execute(string line)
+        public static void Execute()
         {
             string result = string.Empty;
 
@@ -32,6 +32,35 @@ namespace Paiza_
             }
 
             Console.WriteLine(result);
+        }
+    }
+    #endregion
+
+    #region "D059:トランプ占い"
+    static class Class_D_D059
+    {
+        public static void Execute()
+        {
+            List<string> card = Console.ReadLine().Trim().Split(' ').ToList();
+
+            if (card.Where(s => s == "J").Count() == 2)
+            {
+                card[1] = "Q";
+            }
+
+            Console.WriteLine(string.Join(" ", card));
+        }
+    }
+    #endregion
+
+    #region "D060:AボタンとBボタン"
+    static class Class_D_D060
+    {
+        public static void Execute()
+        {
+            int[] line = Console.ReadLine().Trim().Split(' ').Select(s => int.Parse(s)).ToArray();
+            
+            Console.WriteLine((line[0] - line[1]));
         }
     }
     #endregion

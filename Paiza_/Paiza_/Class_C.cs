@@ -112,6 +112,39 @@ namespace Paiza_
     }
     #endregion
 
+    #region "C030:白にするか黒にするか"
+    static class Class_C_C030
+    {
+        public static void Execute()
+        {
+            string[] line = System.Console.ReadLine().Trim().Split(' ');
+            int H = int.Parse(line[0]);
+            int W = int.Parse(line[1]);
+
+            List<List<int>> result = new List<List<int>>();
+            int cnt = 0;
+            for (int i = 0; i < H; ++i)
+            {
+                List<int> line2list = Console.ReadLine().Trim().Split(' ').Select(s => int.Parse(s)).ToList();
+
+                result.Add(new List<int>());
+                foreach (var item in line2list)
+                {
+                    result[cnt].Add((item >= 128) ? 1 : 0);
+                    result[cnt].Add((item >= 128) ? 1 : 0);
+                }
+                ++cnt;
+            }
+
+
+            foreach (var items in result)
+            {
+                Console.WriteLine(string.Join(" ", items));
+            }
+        }
+    }
+    #endregion
+
     #region "C032:お得な買い物"
     static class Class_C_C032
     {

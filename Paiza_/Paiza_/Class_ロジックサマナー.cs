@@ -369,7 +369,7 @@ namespace Paiza_
             int W = int.Parse(line[1]);
             int N = int.Parse(line[2]);
 
-            List<int
+            //List<int
 
             Console.WriteLine("");
         }

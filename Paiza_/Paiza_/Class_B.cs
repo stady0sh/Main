@@ -256,6 +256,82 @@ namespace Paiza_
     }
     #endregion
 
+    #region "B039:雨上がりの道"
+    static class Class_B_B039
+    {
+        public static void Execute()
+        {
+            int n = int.Parse(Console.ReadLine().Trim());   // 水溜りの個数
+            int s = int.Parse(Console.ReadLine().Trim()) - 1;   // 現在の番号
+            List<Dictionary<string, int>> 水溜りList = new List<Dictionary<string, int>>();
+            int 水溜りindex = 0;
+
+            for( int i = 0;i < n; ++i)
+            {
+                水溜りList.Add(new Dictionary<string, int>());
+                string[] line = Console.ReadLine().Trim().Split(' ');   // x1 y1 x2 y2
+                水溜りList[水溜りindex].Add("X1", int.Parse(line[0]));
+                水溜りList[水溜りindex].Add("Y1", int.Parse(line[1]));
+                水溜りList[水溜りindex].Add("X2", int.Parse(line[2]));
+                水溜りList[水溜りindex].Add("Y2", int.Parse(line[3]));
+                
+                ++水溜りindex;
+            }
+
+            List<int> 進入可Index = new List<int>(s);    // 現在地含む
+            List<Dictionary<string, int>> 比較元水溜りListTmp = new List<Dictionary<string, int>>();
+            比較元水溜りListTmp.Add(new Dictionary<string, int>(水溜りList[s]));  // 所在地の水溜りをtmpに格納する
+            Boolean Is比較 = true;
+            while (Is比較)
+            {
+                Is比較 = false;
+
+                // 初回のみ
+                List<Dictionary<string, int>> 比較元水溜りList = new List<Dictionary<string, int>>(比較元水溜りListTmp);     // tmpを比較元にする
+                比較元水溜りListTmp.Clear();
+
+                // 全水溜りをループ
+                for (int i = 0; i < n; ++i)
+                {
+                    // 進入できると判断されたものは、比較外
+                    if (進入可Index.Contains(i)) { continue; }
+
+                    if (Is座標重複(比較元水溜りList, 水溜りList[i]))
+                    {
+                        進入可Index.Add(i);
+                        比較元水溜りListTmp.Add(new Dictionary<string, int>(水溜りList[i]));  // 移動可能な水溜りは、tmpに格納する
+                        Is比較 = true;
+                    }
+                }
+
+            }
+
+            foreach ( var item in 進入可Index.OrderBy(o => o).Select(o => o + 1))  // Indexなので+1
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        static Boolean Is座標重複(List<Dictionary<string, int>> 比較元水溜りList, Dictionary<string, int> 比較水溜り)
+        {
+            bool Is重複 = false;
+            foreach (var item in 比較元水溜りList)
+            {
+                if (item["X2"] < 比較水溜り["X1"] || 比較水溜り["X2"] < item["X1"])
+                {
+                    continue;
+                }
+                if (item["Y2"] < 比較水溜り["Y1"] || 比較水溜り["Y2"] < item["Y1"])
+                {
+                    continue;
+                }
+                Is重複 = true;
+            }
+            return Is重複;
+        }
+    }
+    #endregion
+
     #region "B040:【キャンペーン問題】たのしい暗号解読"
     static class Class_B_040
     {
