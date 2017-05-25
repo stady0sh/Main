@@ -295,4 +295,44 @@ namespace Paiza_
     }
     #endregion
 
+    public class test
+    {
+        public static void Execute(string line)
+        {
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+            var n = int.Parse(line);
+            Console.WriteLine(solve1(n));
+            sw.Stop();
+            Console.WriteLine($"出力時間:{sw.Elapsed}");
+            //var str = line.Split(' ').Select(int.Parse).ToList();
+            //Console.WriteLine(choose(str[0], str[1]));
+        }
+
+        //static int?[,] memo = new int?[50, 50];
+        //public static int choose(int s,int t)
+        //{
+        //    if (!memo[s, t].HasValue)
+        //    {
+        //        if (t == 0 || t == s)
+        //            return 1;
+        //        memo[s, t] = choose(s - 1, t - 1) + choose(s - 1, t);
+        //    }
+
+        //    return memo[s, t].Value;
+        //}
+
+        static int solve1(int n)
+        {
+            if (n <= 3) { return n; }
+            for (int i = 1;i <= 3; ++i)
+            {
+                if (solve1(n - i) == 0) { return i; }
+            }
+            return 0;
+        }
+
+    }
+
+
 }

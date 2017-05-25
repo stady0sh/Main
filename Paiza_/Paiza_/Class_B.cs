@@ -328,6 +328,38 @@ namespace Paiza_
     }
     #endregion
 
+    #region "B038:つるかめ算"
+    static class Class_B_B038
+    {
+        public static void Execute()
+        {
+            List<int> list = Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToList();
+            int 総足数 = list[0];
+            int 総頭数 = list[1];
+            int 鶴の足 = list[2];
+            int 亀の足数 = list[3];
+            var resultList = new List<int[]>();
+            string result = "miss";
+
+            // 総頭数の数だけループさせる
+            for (int i = 1;i < 総頭数; ++i)
+            {
+                if (総足数 == 鶴の足 * i + 亀の足数 * (総頭数 - i))
+                {
+                    resultList.Add(new int[] { i, 総頭数 - i });
+                }
+            }
+
+            if (resultList.Count() == 1)
+            {
+                result = $"{resultList[0][0]} {resultList[0][1]}";
+            }
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
     #region "B039:雨上がりの道"
     static class Class_B_B039
     {

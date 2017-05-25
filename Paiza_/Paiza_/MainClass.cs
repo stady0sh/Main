@@ -10,7 +10,15 @@ namespace Paiza_
     {
         static void Main(string[] args)
         {
-            Class_D_D054.Execute();
+            //while (true)
+            //{
+            //    string line = Console.ReadLine().Trim();
+            //    if (line == string.Empty) { break; }
+            //    test.Execute(line);
+            //}
+
+
+            Class_B_B038.Execute();
 
             Console.ReadLine();
         }
