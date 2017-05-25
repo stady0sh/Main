@@ -36,6 +36,19 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D054:11/11"
+    static class Class_D_D054
+    {
+        public static void Execute()
+        {
+            var line = Console.ReadLine().Trim();
+
+
+            Console.WriteLine((line.Length >= 11) ? "OK" : $"{11 - line.Length}");
+        }
+    }
+    #endregion
+
     #region "D055:ワインのキャッチコピー"
     static class Class_D_D055
     {
@@ -57,6 +70,43 @@ namespace Paiza_
             int[] line = Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToArray();
             int result = Convert.ToInt32(Math.Pow(line[0], 3) - Math.Pow(line[1], 3));
 
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
+    #region "D057:プレゼント選び"
+    static class Class_D_D057
+    {
+        public static void Execute()
+        {
+            var 成績 = int.Parse(Console.ReadLine().Trim());
+            var List = Console.ReadLine().Trim().Split(' ').ToList();
+
+
+
+            Console.WriteLine(List[成績-1]);
+        }
+    }
+    #endregion
+
+    #region "D058:初詣で"
+    static class Class_D_D058
+    {
+        public static void Execute()
+        {
+            var list = Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToList();
+            StringBuilder result = new StringBuilder();
+            int cnt = 0;
+            foreach (var item in list)
+            {
+                string s = (++cnt == 2) ? "B" : "A";
+                for (int i = 0;i < item; ++i)
+                {
+                    result.Append(s);
+                }
+            }
 
             Console.WriteLine(result);
         }

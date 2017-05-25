@@ -112,6 +112,47 @@ namespace Paiza_
     }
     #endregion
 
+    #region "C028:単語テストの採点"
+    static class Class_C_C028
+    {
+        public static void Execute()
+        {
+            //string result = string.Empty;
+            var n = int.Parse(System.Console.ReadLine().Trim());
+            int point = 0;
+            int errCnt = 0;
+
+            for (int i = 0;i < n; ++i)
+            {
+                var line = Console.ReadLine().Trim().Split(' ');
+                var q = line[0].ToCharArray();
+                var a = line[1].ToCharArray();
+                errCnt = 0;
+
+                if (q.Length != a.Length) { continue; }
+                for (int j = 0;j < q.Length; ++j)
+                {
+                    if(q[j] != a[j]) { ++errCnt; }
+                }
+
+                switch (errCnt)
+                {
+                    case 0:
+                        point += 2;
+                        break;
+                    case 1:
+                        point++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            Console.WriteLine(point);
+        }
+    }
+    #endregion
+
     #region "C029:旅行の計画"
     static class Class_C_C029
     {
@@ -178,6 +219,32 @@ namespace Paiza_
             foreach (var items in result)
             {
                 Console.WriteLine(string.Join(" ", items));
+            }
+        }
+    }
+    #endregion
+
+    #region "C031:時差を求めたい"
+    static class Class_C_C031
+    {
+        public static void Execute()
+        {
+            int n = int.Parse(System.Console.ReadLine().Trim()); //都市数
+            Dictionary<string, int> 時差リスト = new Dictionary<string, int>();  // 都市名,時差(時)
+            string[] line2;
+            for (int i = 0;i < n; ++i)
+            {
+                line2 = Console.ReadLine().Trim().Split(' ');
+                時差リスト.Add(line2[0] , int.Parse(line2[1]));
+            }   
+            string[] line3 = Console.ReadLine().Trim().Split(' ');  // 所在地,現在時刻
+            string q = line3[0];
+            DateTime t = DateTime.Parse($"{line3[1]}:00");
+
+            foreach (var item in 時差リスト)
+            {
+                string result = t.AddHours(時差リスト[item.Key] - 時差リスト[q]).ToString("HH:mm");
+                Console.WriteLine(result);
             }
         }
     }
