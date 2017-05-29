@@ -36,6 +36,23 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D050:お月見だんご"
+    static class Class_D_D050
+    {
+        public static void Execute()
+        {
+            List<int> list = Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToList();
+            int cnt = 0;
+            foreach (var item in list)
+            {
+                cnt += (item > 5) ? 5 : item;
+            }
+
+            Console.WriteLine(cnt);
+        }
+    }
+    #endregion
+
     #region "D051:衣替え"
     static class Class_D_D051
     {
