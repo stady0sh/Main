@@ -18,7 +18,7 @@ namespace Paiza_
             //}
 
 
-            Class_D_D050.Execute();
+            Class_B_B036.Execute();
 
             Console.ReadLine();
         }

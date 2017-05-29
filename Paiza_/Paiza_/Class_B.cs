@@ -224,6 +224,86 @@ namespace Paiza_
     }
     #endregion
 
+    #region "B036:大統領選挙 Give Up"
+    static class Class_B_B036
+    {
+        public static void Execute()
+        {
+            int M = int.Parse(Console.ReadLine().Trim());
+
+            // 両党の候補者
+            string Rep = "Rep";
+            string Dem = "Dem";
+
+            Dictionary<int,string> 候補者list = new Dictionary<int,string>();
+            for (int i = 0;i < M; ++i)
+            {
+                候補者list.Add(i, Console.ReadLine().Trim());
+            }
+
+            // 投票リスト
+            int N = int.Parse(Console.ReadLine().Trim());
+            List<Dictionary<int, int>> 投票結果 = new List<Dictionary<int, int>>();
+            for (int i = 0; i < N; ++i)
+            {
+                投票結果.Add(new Dictionary<int, int>());
+                int[] 投票 = Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToArray();
+                for (int j = 0; j < M; ++j)
+                {
+                    投票結果[i].Add(j, 投票[j]);
+                }
+            }
+            string result = string.Empty;
+
+            List<Dictionary<int, int>> 順位表リスト1 = new List<Dictionary<int, int>>();
+            List<Dictionary<int, int>> 順位表リスト2 = new List<Dictionary<int, int>>();
+            foreach ( var items in 投票結果)
+            {
+                Dictionary<int, int> 順位表1 = new Dictionary<int, int>();
+                Dictionary<int, int> 順位表2 = new Dictionary<int, int>();
+                for (int i = 0;i < items.Count(); ++i)
+                {
+                    if (候補者list[items[i] -1] == "Republican")
+                    {
+                        順位表1.Add(i,items[i]);
+                    }
+                    else
+                    {
+                        順位表2.Add(i,items[i]);
+                    }
+                }
+                順位表リスト1.Add(順位表1);
+                順位表リスト2.Add(順位表2);
+            }
+
+            //List<int> 各党代表 = new List<int>();
+            //var 結果リスト1 = 順位表リスト1.GroupBy(s => s.Keys).Select(s => new { 順位 = s, Count = s.Count() }).OrderBy(s => s.順位.key).ThenByDescending(s => s.Count);
+            //各党代表.Add(結果リスト1.First().順位.value);
+            //var 結果リスト2 = 順位表リスト2.GroupBy(s => s.Keys).Select(s => new { 順位 = s, Count = s.Count() }).OrderBy(s => s.順位.key).ThenByDescending(s => s.Count);
+            //var b = 結果リスト2.First().順位.Key;
+            
+            foreach (var item in 候補者list)
+            {
+                if (item.Value == "Republican")
+                {
+                    順位表リスト1.Where(s => s.Keys == item.Key + 1)
+                }
+                else
+                {
+                    順位表2.Add(i, items[i]);
+                }
+            }
+        
+
+
+            //各党代表.Add(結果リスト1.)
+
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
     #region "B037:【2017年お正月問題】幸運な1年"
     static class Class_B_B037
     {
