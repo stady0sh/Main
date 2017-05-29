@@ -36,6 +36,60 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D051:衣替え"
+    static class Class_D_D051
+    {
+        public static void Execute()
+        {
+            List<string> list = Console.ReadLine().Trim().Split(' ').ToList();
+            string result = (Convert.ToDecimal(list.Count) / 2 <= list.Where(s => s == "W").Count() ? "OK" : "NG");
+
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
+    #region "D052:ピラミッドの作り方"
+    static class Class_D_D052
+    {
+        public static void Execute()
+        {
+            int n = int.Parse(Console.ReadLine().Trim());
+            int cnt = 0;
+            for (int i = 1;i <= n; ++i)
+            {
+                cnt += i;
+            }
+
+
+            Console.WriteLine(cnt);
+        }
+    }
+    #endregion
+
+    #region "D053:トリック・オア・トリート"
+    static class Class_D_D053
+    {
+        public static void Execute()
+        {
+            string line1 = Console.ReadLine().Trim();
+            switch (line1)
+            {
+                case "chocolate":
+                case "candy":
+                    Console.WriteLine("Thanks!");
+                    break;
+                default:
+                    Console.WriteLine("No!");
+                    break;
+            }
+
+
+        }
+    }
+    #endregion
+
     #region "D054:11/11"
     static class Class_D_D054
     {
