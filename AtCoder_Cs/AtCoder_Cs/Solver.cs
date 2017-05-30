@@ -14,7 +14,7 @@ namespace AtCoder_Cs
             {
                 System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
                 sw.Start();
-                Program.Main(args);
+                Program.Main();
                 sw.Stop();
                 Console.WriteLine($"{sw.Elapsed}");
                 string line = Console.ReadLine().Trim();
