@@ -12,6 +12,9 @@ class Program
     static void Main()
     {
         var maze = CreateMaze();
+        var bfs = new MazeBfs(maze);
+        bfs.Search();
+        bfs.DebugPrint(maze);
 
     }
 
@@ -113,39 +116,62 @@ public class MazeBfs
                         && Maze[nextCell.X,nextCell.Y] == Path)
                     {
                         // 探索済み情報
-
-
-
-
-
-
+                        SetVisited(target, nextCell);
+                        if (nextCell.X == Goal.X && nextCell.Y == Goal.Y)
+                        {
+                            // 探索候補がゴールの場合すぐに抜けるために探索候補を削除して抜ける
+                            // Console.log('ゴールが見つかりました。おめでとう．．．');
+                            queue.Clear();
+                            queue.Enqueue(nextCell);
+                            isGoaled = true;
+                            break;
+                        }
+                        else
+                        {
+                            // キューに詰める
+                            queue.Enqueue(nextCell);
+                        }
                     }
-
-
-
                 }
-
-
-
-
             }
-
-
-
-
-
         }
-
-
-
-
+        // 探索結果を配列に設定
+        if (isGoaled)
+        {
+            SetRoute();
+        }
     }
 
+    // ゴールへのルートを2次元配列に設定
+    public void SetRoute()
+    {
+        // 訪問済みの配列からゴールまでのルートを設定する
+        var startIndex = ToIndex(Start);
+        var goalIndex = ToIndex(Goal);
+        var beforeIndex = VisitedArray[goalIndex];
+        var route = new List<int>();
+
+        while (beforeIndex >= 0 && beforeIndex != startIndex)
+        {
+            // ゴールからスタートへのルートをたどる
+            route.Add(beforeIndex);
+            beforeIndex = VisitedArray[beforeIndex];
+        }
+
+        // ゴールへのルートを設定
+        foreach (var index in route)
+        {
+            var cell = ToCell(index);
+            Maze[cell.X, cell.Y] = Route;
+        }
+    }
 
     // 訪問済みデータの設定を行う
-    private void SetVisited(Cell formCell,Cell toCell)
+    private void SetVisited(Cell fromCell,Cell toCell)
     {
-
+        var fromIndex = ToIndex(fromCell);
+        var toIndex = ToIndex(toCell);
+        VisitedArray[toIndex] = fromIndex;
     }
 
     // Cellを1次元配列のインデックスに変換
@@ -154,8 +180,12 @@ public class MazeBfs
         return cell.X + MazeWidth * cell.Y;
     }
 
-
-
+    // 1次元配列のインデックスをセルに変換
+    private Cell ToCell(int index)
+    {
+        return new Cell(index % MazeWidth, index / MazeWidth);
+    }
+    
     // 通路・壁情報
     const int Path = 0;
     const int Wall = 1;
@@ -182,6 +212,43 @@ public class MazeBfs
         Left = 3
     }
 
+    // デバッグ用処理
+    public void DebugPrint(int[,] maze)
+    {
+        var text = string.Empty;
+        Console.WriteLine($"Width: {maze.GetLength(0)}");
+        Console.WriteLine($"Height: {maze.GetLength(1)}");
+        for (int y = 0; y < maze.GetLength(1); y++)
+        {
+            for (int x = 0; x < maze.GetLength(0); x++)
+            {
+                if (x == Start.X && y == Start.Y)
+                {
+                    text += "S ";
+                }
+                else if (x == Goal.X && y == Goal.Y)
+                {
+                    text += " G";
+                }
+                else if (maze[x, y] == Path)
+                {
+                    text += "  ";
+                }
+                else if (maze[x, y] == Wall)
+                {
+                    text += "##";
+                }
+                else if (maze[x, y] == Route)
+                {
+                    text += "..";
+                }
+            }
+            text += "\r\n";
+        }
+        Console.WriteLine(text);
+        Console.WriteLine("キーを入力すると終了");
+        Console.ReadLine();
+    }
 
 
 }
