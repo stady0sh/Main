@@ -366,44 +366,20 @@ namespace Paiza_
     }
     #endregion
 
-    public class test
+    #region "D068:雨と晴れの記録"
+    static class Class_D_D068
     {
-        public static void Execute(string line)
+        public static void Execute()
         {
-            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-            sw.Start();
-            var n = int.Parse(line);
-            Console.WriteLine(solve1(n));
-            sw.Stop();
-            Console.WriteLine($"出力時間:{sw.Elapsed}");
-            //var str = line.Split(' ').Select(int.Parse).ToList();
-            //Console.WriteLine(choose(str[0], str[1]));
+            int n = int.Parse(Console.ReadLine());
+            char[] s = Console.ReadLine().ToArray();
+            int S = s.Where(c => c == 'S').Count();
+            int R = s.Where(c => c == 'R').Count();
+
+
+            Console.WriteLine($"{S} {R}");
         }
-
-        //static int?[,] memo = new int?[50, 50];
-        //public static int choose(int s,int t)
-        //{
-        //    if (!memo[s, t].HasValue)
-        //    {
-        //        if (t == 0 || t == s)
-        //            return 1;
-        //        memo[s, t] = choose(s - 1, t - 1) + choose(s - 1, t);
-        //    }
-
-        //    return memo[s, t].Value;
-        //}
-
-        static int solve1(int n)
-        {
-            if (n <= 3) { return n; }
-            for (int i = 1;i <= 3; ++i)
-            {
-                if (solve1(n - i) == 0) { return i; }
-            }
-            return 0;
-        }
-
     }
-
-
+    #endregion
+    
 }

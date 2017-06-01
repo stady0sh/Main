@@ -8,19 +8,9 @@ namespace Paiza_
 {
     class MainClass
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            //while (true)
-            //{
-            //    string line = Console.ReadLine().Trim();
-            //    if (line == string.Empty) { break; }
-            //    test.Execute(line);
-            //}
-
-
-            Class_B_B036.Execute();
-
-            Console.ReadLine();
+            Class_D_D068.Execute();
         }
     }
 }
