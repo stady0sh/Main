@@ -10,7 +10,7 @@ namespace Paiza_
     {
         public static void Main()
         {
-            Class_D_D068.Execute();
+            Class_B_B032.Execute();
         }
     }
 }

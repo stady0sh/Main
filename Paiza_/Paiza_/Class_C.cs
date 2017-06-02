@@ -112,6 +112,43 @@ namespace Paiza_
     }
     #endregion
 
+    #region "C026:ウサギと人参"
+    static class Class_C_C026
+    {
+        public static void Execute()
+        {
+            string[] line = System.Console.ReadLine().Trim().Split(' ');
+            int N = int.Parse(line[0]);
+            int S = int.Parse(line[1]);
+            int p = int.Parse(line[2]);
+
+            Dictionary<int, int> list = new Dictionary<int, int>();
+            for (int i = 0;i < N; ++i)
+            {
+                int[] line2 = Console.ReadLine().Trim().Split(' ').Select(s => int.Parse(s)).ToArray();
+
+                if (line2[1] >= S - p && line2[1] <= S + p)
+                {
+                    list.Add(i + 1, line2[0]);
+                }
+
+            }
+
+            string ans;
+            if (list.Count() == 0)
+            {
+                ans = "not found";
+            }
+            else
+            {
+                ans = list.OrderByDescending(o => o.Value).ThenBy(t => t.Key).Select(s => s.Key).First().ToString();
+            }
+
+            Console.WriteLine(ans);
+        }
+    }
+    #endregion
+
     #region "C028:単語テストの採点"
     static class Class_C_C028
     {

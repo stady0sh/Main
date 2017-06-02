@@ -20,6 +20,107 @@ namespace Paiza_
     }
     #endregion
 
+    #region "B032:デジタル計算機"
+    static class Class_B_B032
+    {
+        const char 珠 = '*';
+        const char 無 = '|';
+        const char 枠 = '=';
+
+        public static void Execute()
+        {
+
+            int W = int.Parse(Console.ReadLine().Trim());
+            int i = 0;
+            string[] line2list = new string[8];
+            for (i = 0; i < 8; ++i)
+            {
+                line2list [i] = Console.ReadLine().Trim();
+            }
+            string[] line3list = new string[8];
+            for (i = 0; i < 8; ++i)
+            {
+                line3list[i] = Console.ReadLine().Trim();
+            }
+
+            int[] sumList = new int[W];
+            for (i = 0;i < W; ++i)
+            {
+                sumList[i] = 計算(i, line2list) + 計算(i, line3list);
+            }
+
+            string[] 結果 = 結果算出(sumList, W);
+            for (i = 0;i < 8; ++i)
+            {
+                Console.WriteLine(結果[i]);
+            }
+        }
+
+        private static int 計算(int index, string[] list)
+        {
+            int cnt = 0;
+
+            for (int i = 0;i < 8; ++i)
+            {
+                switch (i)
+                {
+                    case 1:
+                        if (list[i].ToString()[index] == 珠) { cnt += 5; }
+                        break;
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                        if (list[i].ToString()[index] == 無) { cnt += i - 3; }
+                        break;
+                }
+            }
+            return cnt;
+        }
+
+        private static string[] 結果算出(int[] sumList,int W)
+        {
+            string[] 結果list = new string[8];
+            char[] 結果;
+            bool is繰上 = false;
+            int cnt = 0;
+            foreach (var item in sumList.Reverse())
+            {
+                結果 = new char[] { 珠, 珠, 枠, 珠, 珠, 珠, 珠, 珠 };
+                cnt = item;
+                if (is繰上)
+                {
+                    cnt += 1;
+                    is繰上 = false;
+                }
+                if (cnt > 9)
+                {
+                    cnt -= 10;
+                    is繰上 = true;
+                }
+                if (cnt >= 5)
+                {
+                    cnt -= 5;
+                    結果[0] = 無;
+                }
+                else
+                {
+                    結果[1] = 無;
+                }
+                結果[cnt + 3] = 無;
+
+                for (int i = 0; i < 8; ++i)
+                {
+                    結果list[i] = 結果[i] + 結果list[i];
+                }
+            }
+            
+            return 結果list;
+        }
+    }
+    #endregion
+
     #region "B033:テーブルジェネレーター"
     static class Class_B_B033
     {
@@ -224,7 +325,7 @@ namespace Paiza_
     }
     #endregion
 
-    //#region "B036:大統領選挙 Give Up"
+    #region "B036:大統領選挙 Give Up"
     //static class Class_B_B036
     //{
     //    public static void Execute()
@@ -281,7 +382,7 @@ namespace Paiza_
     //        //各党代表.Add(結果リスト1.First().順位.value);
     //        //var 結果リスト2 = 順位表リスト2.GroupBy(s => s.Keys).Select(s => new { 順位 = s, Count = s.Count() }).OrderBy(s => s.順位.key).ThenByDescending(s => s.Count);
     //        //var b = 結果リスト2.First().順位.Key;
-            
+
     //        foreach (var item in 候補者list)
     //        {
     //            if (item.Value == "Republican")
@@ -293,7 +394,7 @@ namespace Paiza_
     //                順位表2.Add(i, items[i]);
     //            }
     //        }
-        
+
 
 
     //        //各党代表.Add(結果リスト1.)
@@ -302,7 +403,7 @@ namespace Paiza_
     //        Console.WriteLine(result);
     //    }
     //}
-    //#endregion
+    #endregion
 
     #region "B037:【2017年お正月問題】幸運な1年"
     static class Class_B_B037
