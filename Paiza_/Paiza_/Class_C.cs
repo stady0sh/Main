@@ -112,6 +112,39 @@ namespace Paiza_
     }
     #endregion
 
+    #region "C025:ファックスの用紙回収"
+    static class Class_C_C025
+    {
+        public static void Execute()
+        {
+            var M = int.Parse(System.Console.ReadLine().Trim());
+            var N = int.Parse(System.Console.ReadLine().Trim());
+            Dictionary<int, int> list = new Dictionary<int, int>();
+
+            for (int i = 0;i < N; ++i)
+            {
+                int[] line = System.Console.ReadLine().Trim().Split(' ').Select(s => int.Parse(s)).ToArray();
+                if (list.ContainsKey(line[0]))
+                {
+                    list[line[0]] += line[2];
+                }
+                else
+                {
+                    list.Add(line[0], line[2]);
+                }
+                
+            }
+
+            int cnt = 0;
+            foreach(var item in list)
+            {
+                cnt += (item.Value + M - 1) / M;
+            }
+            Console.WriteLine(cnt);
+        }
+    }
+    #endregion
+
     #region "C026:ウサギと人参"
     static class Class_C_C026
     {

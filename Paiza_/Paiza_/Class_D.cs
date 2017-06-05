@@ -36,6 +36,20 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D049:◯◯の秋"
+    static class Class_D_D049
+    {
+        public static void Execute()
+        {
+            string conv = "noaki";
+            string s = Console.ReadLine().Trim();
+
+
+            Console.WriteLine(s.Replace(conv,""));
+        }
+    }
+    #endregion
+
     #region "D050:お月見だんご"
     static class Class_D_D050
     {
