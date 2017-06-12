@@ -11,11 +11,47 @@ namespace YukiCoder_Cs
     {
         public static void Main()
         {
-            int p = 3;
-            int 誤差 = 1000000;
-            double n = double.Parse(Console.ReadLine());
-            double ans = Math.Sqrt(n / p);
-            Console.WriteLine(Math.Ceiling(ans / 誤差) * 誤差);
+            int N = int.Parse(Console.ReadLine());
+            int[] list = Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
+            
+            string ans = "possible";
+            if (list.Sum()% 2 != 0)
+            {
+                ans = "impossible";
+            }
+            else
+            {
+                int a = 0;
+                int b = 0;
+
+                for (int i = 0;i < N; ++i)
+                {
+                    for (int j = 0; j < N; ++j)
+                    {
+
+                    }
+
+                }
+                Array.Sort(list);
+                Array.Reverse(list);
+                foreach (var item in list)
+                {
+                    if (a > b)
+                    {
+                        b += item;
+                    }
+                    else
+                    {
+                        a += item;
+                    }
+                }
+
+                if (a != b || list.Contains(Math.Abs(a - b) * 2) == false)
+                {
+                    ans = "impossible";
+                }
+            }
+            Console.WriteLine(ans);
         }
     }
 }

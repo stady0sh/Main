@@ -36,6 +36,24 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D048:台風の間隔"
+    static class Class_D_D048
+    {
+        public static void Execute()
+        {
+            int N = int.Parse(Console.ReadLine().Trim());
+            int n;
+            for (int i = 0; i < 4; ++i)
+            {
+                n = int.Parse(Console.ReadLine().Trim());
+                Console.WriteLine($"{n - N}");
+                N = n;
+            }
+
+        }
+    }
+    #endregion
+
     #region "D049:◯◯の秋"
     static class Class_D_D049
     {
@@ -43,9 +61,8 @@ namespace Paiza_
         {
             string conv = "noaki";
             string s = Console.ReadLine().Trim();
-
-
-            Console.WriteLine(s.Replace(conv,""));
+            
+            Console.WriteLine(s.Replace(conv, ""));
         }
     }
     #endregion

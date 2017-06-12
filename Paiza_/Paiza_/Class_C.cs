@@ -112,6 +112,44 @@ namespace Paiza_
     }
     #endregion
 
+    #region "C024:ミニ・コンピュータ"
+    static class Class_C_C024
+    {
+        public static void Execute()
+        {
+            var N = int.Parse(System.Console.ReadLine().Trim());
+            int a = 0;
+            int b = 0;
+            for (int i = 0; i < N; ++i)
+            {
+                string[] line = Console.ReadLine().Split(' ');
+                switch (line[0])
+                {
+                    case "SET":
+                        if (line[1] == "1")
+                        {
+                            a = int.Parse(line[2]);
+                        }
+                        else
+                        {
+                            b = int.Parse(line[2]);
+                        }
+                        break;
+                    case "ADD":
+                        b = a + int.Parse(line[1]);
+                        break;
+                    case "SUB":
+                        b = a - int.Parse(line[1]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            Console.WriteLine($"{a} {b}");
+        }
+    }
+    #endregion
+
     #region "C025:ファックスの用紙回収"
     static class Class_C_C025
     {
@@ -517,6 +555,49 @@ namespace Paiza_
             }
 
             Console.WriteLine(cnt.ToString());
+        }
+    }
+    #endregion
+
+    #region "C036:[もし女コラボ問題]犬ぞりトーナメント"
+    static class Class_C_C036
+    {
+        public static void Execute()
+        {
+            int[] list = new int[2];
+            int[] line1 = System.Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
+            int[] line2 = System.Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
+
+            int[] line3 = System.Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
+            if (line3[line1[0] - 1] < line3[line1[1] -1])
+            {
+                list[0] = line1[0];
+            }
+            else
+            {
+                list[0] = line1[1];
+            }
+            if (line3[line2[0] -1] < line3[line2[1] - 1])
+            {
+                list[1] = line2[0];
+            }
+            else
+            {
+                list[1] = line2[1];
+            }
+            int[] line4 = System.Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
+            Array.Sort(list);
+            if (line4[0] < line4[1])
+            {
+                Console.WriteLine(list[0]);
+                Console.WriteLine(list[1]);
+            }
+            else
+            {
+                Console.WriteLine(list[1]);
+                Console.WriteLine(list[0]);
+            }
+
         }
     }
     #endregion

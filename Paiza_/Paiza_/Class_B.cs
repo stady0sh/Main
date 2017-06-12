@@ -20,6 +20,215 @@ namespace Paiza_
     }
     #endregion
 
+    #region " B029:地価の予想 "
+    static class Class_B_B029
+    {
+        public static void Execute()
+        {
+            string[] line1 = Console.ReadLine().Trim().Split(' ').ToArray();
+            int x = int.Parse(line1[0]);
+            int y = int.Parse(line1[1]);
+            int k = int.Parse(Console.ReadLine());  // 平均を求める範囲
+            int N = int.Parse(Console.ReadLine());  // 地価情報数
+            //Dictionary<string, int> 価格リスト = new Dictionary<string, int>();
+            Dictionary<double,int> 価格リスト = new Dictionary<double, int>();
+            int[] line2;
+            for (int i = 0;i < N; ++i)
+            {
+                line2 = Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
+                //価格リスト.Add($"{line2[0]}_{line2[1]}", line2[2]);
+                価格リスト.Add(F(x, y, line2[0], line2[1]),line2[2]);
+            }
+
+            var ave = Math.Round(価格リスト.OrderBy(d => d.Key).Take(k).Select(d => d.Value).Average(),0,MidpointRounding.AwayFromZero);
+            Console.WriteLine(ave);
+        }
+
+        private static double F(int x,int y,int x2,int y2)
+        {
+            return Math.Sqrt(Math.Pow(Math.Abs(x - x2),2) + Math.Pow(Math.Abs(y - y2),2));
+        }
+    }
+    #endregion
+
+    #region "B030:氷のダンジョン"
+    static class Class_B_B030
+    {
+        static int H;
+        static int W;
+
+        public static void Execute()
+        {
+            int[] line = Console.ReadLine().Trim().Split(' ').Select(s => int.Parse(s)).ToArray();
+            H = line[0];
+            W = line[1];
+            char[] line2;
+            int i;
+            int j;
+            //Dictionary<Cell,char> map = new Dictionary<Cell, char>();
+            char[,] map = new char[W, H];
+            for (i = 0;i < H; ++i)
+            {
+                line2 = Console.ReadLine().Trim().ToCharArray();
+                for (j = 0; j < W; ++j)
+                {
+                    //map.Add(new Cell(j + 1, i + 1), line2[j]);
+                    map[j, i] = line2[j];
+                }
+            }
+            // 初期位置
+            int[] line3 = Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
+            Cell loc = new Cell(line3[0] - 1, line3[1]  -1);
+            int N = int.Parse(Console.ReadLine());
+            int moveX = 0;
+            int moveY = 0;
+            for (i = 0;i < N; ++i)
+            {
+                switch (Console.ReadLine().ToCharArray().First())
+                {
+                    case 'U':
+                        moveX = 0;
+                        moveY = -1;
+                        break;
+                    case 'R':
+                        moveX = 1;
+                        moveY = 0;
+                        break;
+                    case 'D':
+                        moveX = 0;
+                        moveY = 1;
+                        break;
+                    case 'L':
+                        moveX = -1;
+                        moveY = 0;
+                        break;
+                }
+
+                do
+                {
+                    if (loc.y + moveY < 0 ||
+                        loc.x + moveX < 0 ||
+                        loc.y + moveY >= H ||
+                        loc.x + moveX >= W)
+                    {
+                        break;
+                    }
+
+                    loc = new Cell(loc.x + moveX, loc.y + moveY);
+                }
+                while (map[loc.x,loc.y] == '#');
+            }
+
+            Console.WriteLine($"{loc.x + 1} {loc.y + 1}");
+        }
+
+        // Cellを1次元配列のインデックスに変換
+        //private static int ToIndex(Cell cell)
+        //{
+        //    return cell.x + H * cell.y;
+        //}
+
+        public enum　マス
+        {
+            氷,  //#
+            土   //.
+        }
+        public class Cell
+        {
+            public int x;
+            public int y;
+            public Cell(int x , int y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+        }
+    }
+    #endregion
+
+    #region "B031:コインのウラとオモテ"
+    static class Class_B_B031
+    {
+        public static void Execute()
+        {
+            int N = int.Parse(Console.ReadLine());
+            char[] line = Console.ReadLine().ToCharArray();
+            List<ExList> list = new List<ExList>();
+
+            foreach(var item in line)
+            {
+                if(list.Count > 0 && list.Last().code == item)
+                {
+                    list.Last().count += 1;
+                }
+                else
+                {
+                    list.Add(new ExList(item, 1));
+                }                
+            }
+
+            char c = 'w';
+            List<ExList> tmpList;
+            while (list.Count() > 2)
+            {
+                tmpList = new List<ExList>();
+                for (int i = 0;i < list.Count(); ++i)
+                {
+                    if(i == 0 || i == list.Count() - 1)
+                    {
+                        tmpList.Add(list[i]);
+                    }
+                    else
+                    {
+                        switch (list[i].code)
+                        {
+                            case 'b':
+                                c = 'w';
+                                break;
+                            case 'w':
+                                c = 'b';
+                                break;
+                        }
+                        tmpList.Add(new ExList(c,list[i].count));
+                    }
+                }
+
+                list = new List<ExList>();
+                foreach (var item in tmpList)
+                {
+                    if(list.Count() > 0 && list.Last().code == item.code)
+                    {
+                        list.Last().count += item.count;
+                    }
+                    else
+                    {
+                        list.Add(new ExList(item.code, item.count));
+                    }
+                }
+
+            }
+
+            int ans = 0;
+            foreach(var item in list)
+            {
+                if(item.code == 'b') { ans = item.count; }
+            }
+            Console.WriteLine($"{ans}");
+        }
+
+        public class ExList
+        {
+            public char code;
+            public int count;
+            public ExList(char code,int count )
+            {
+                this.code = code;
+                this.count = count;
+            }
+        }
+    }
+    #endregion
+
     #region "B032:デジタル計算機"
     static class Class_B_B032
     {
@@ -769,6 +978,5 @@ namespace Paiza_
         }
     }
     #endregion
-
 
 }
