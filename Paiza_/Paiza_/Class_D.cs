@@ -36,6 +36,18 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D046:不思議なタマゴ"
+    static class Class_D_D046
+    {
+        public static void Execute()
+        {
+            var result = Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToList();
+            
+            Console.WriteLine(result.Max());
+        }
+    }
+    #endregion
+
     #region "D048:台風の間隔"
     static class Class_D_D048
     {
