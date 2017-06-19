@@ -50,6 +50,7 @@
     <Compile Include="Class_C.cs" />
     <Compile Include="Class_D.cs" />
     <Compile Include="Class_もし女.cs" />
+    <Compile Include="Class_もし女2.cs" />
     <Compile Include="Class_ロジックサマナー.cs" />
     <Compile Include="LocalTest.cs" />
     <Compile Include="MainClass.cs" />
