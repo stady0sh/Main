@@ -48,11 +48,28 @@ namespace Subject._2_3
             {
 
             }
+
+            var a = 7 - (dtStart.DayOfWeek - DayOfWeek.Sunday);
+
+
             var weekNo = new DateTime(年, 月, 1).DayOfWeek;
-            string[,] day = new string[6, 7];
-            
+            List<List<string>> Calendar = new List<List<string>>();
+
+            for (int i = 0;i < 7; ++i)
+            {
+                Calendar.Add(new List<string>());
+                if (a <= i)
+                {
+                    Calendar[0].Add($"{i:00}");
+                }
+                else
+                {
+                    Calendar[0].Add($"  ");
+                }
+            }
+
             // 日付をクリア
-            for ( int i = 0;i <= 5; ++i)
+            for (int i = 0; i <= 5; ++i)
             {
                 for (int j = 0; j <= 5; ++j)
                 {
@@ -60,14 +77,14 @@ namespace Subject._2_3
                 }
             }
 
-            int w = 0; // 週
-            int dw = dt.DayOfWeek; // 曜日 ( 0 〜 6 )
-            int d = 1; // 日
-            int days = Date.DaysInMonth(dt.Year, dt.Month);
-            do
-            {
+            //int w = 0; // 週
+            //int dw = dt.DayOfWeek; // 曜日 ( 0 〜 6 )
+            //int d = 1; // 日
+            //int days = Date.DaysInMonth(dt.Year, dt.Month);
+            //do
+            //{
 
-            } while (d <= days);
+            //} while (d <= days);
 
 
         }   
