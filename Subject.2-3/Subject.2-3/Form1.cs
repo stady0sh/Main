@@ -43,16 +43,8 @@ namespace Subject._2_3
 
             DateTime dtStart = new DateTime(年, 月, 1);
             DateTime dtEnd = new DateTime(年, 月+1, 1).AddDays(-1);
-
-            for (int i = 1;i <= dtEnd.Day; ++i)
-            {
-
-            }
-
-            var a = 7 - (dtStart.DayOfWeek - DayOfWeek.Sunday);
-
-
-            var weekNo = new DateTime(年, 月, 1).DayOfWeek;
+            
+            var weekNo = (int)dtStart.DayOfWeek;
             List<List<string>> Calendar = new List<List<string>>();
 
             for (int i = 0;i < 7; ++i)
