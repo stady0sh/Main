@@ -22,62 +22,63 @@ namespace Subject._2_3
         {
             txt年.Text = DateTime.Now.Year.ToString();
             txt月.Text = DateTime.Now.Month.ToString();
+            txt結果.Text = string.Empty;
         }
         #endregion
 
         #region "イベント"
         private void button1_Click(object sender, EventArgs e)
         {
+            txt結果.Text = string.Empty;
             int 年;
             int 月;
             if(int.TryParse(txt年.Text, out 年) == false)
             {
-                MessageBox.Show("年は数値を入力してください。");
+                MessageBox.Show("年は1900～2100までの値を入力してください。");
                 return;
             }
+            else if (年 > 2100 || 1900 > 年)
+            {
+                MessageBox.Show("年は1900～2100までの値を入力してください。");
+                return;
+            }   
             if (int.TryParse(txt月.Text, out 月) == false)
             {
-                MessageBox.Show("月は数値を入力してください。");
+                MessageBox.Show("月は1～12までの値を入力してください。");
+                return;
+            }
+            else if (月 > 12 || 1 > 月)
+            {
+                MessageBox.Show("月は1～12までの値を入力してください。");
                 return;
             }
 
             DateTime dtStart = new DateTime(年, 月, 1);
-            DateTime dtEnd = new DateTime(年, 月+1, 1).AddDays(-1);
+            DateTime dtEnd = new DateTime(年, 月, 1).AddMonths(1).AddDays(-1);
             
             var weekNo = (int)dtStart.DayOfWeek;
             List<List<string>> Calendar = new List<List<string>>();
+            Calendar.Add(new List<string>());
 
-            for (int i = 0;i < 7; ++i)
+            int i = 0;
+            for (i = 0;i < weekNo; ++i)
             {
-                Calendar.Add(new List<string>());
-                if (a <= i)
-                {
-                    Calendar[0].Add($"{i:00}");
-                }
-                else
-                {
-                    Calendar[0].Add($"  ");
-                }
+                Calendar[0].Add("  ");
             }
 
-            // 日付をクリア
-            for (int i = 0; i <= 5; ++i)
+            for (int d = 1;d <= dtEnd.Day; ++d)
             {
-                for (int j = 0; j <= 5; ++j)
+                if (Calendar[Calendar.Count() - 1].Count() == 7)
                 {
-
+                    Calendar.Add(new List<string>());
                 }
+                Calendar[Calendar.Count() - 1].Add(d.ToString().PadLeft(2,' '));
             }
-
-            //int w = 0; // 週
-            //int dw = dt.DayOfWeek; // 曜日 ( 0 〜 6 )
-            //int d = 1; // 日
-            //int days = Date.DaysInMonth(dt.Year, dt.Month);
-            //do
-            //{
-
-            //} while (d <= days);
-
+            
+            foreach( var item in Calendar)
+            {
+                txt結果.Text += string.Join(" ", item) + "\r\n";
+            }
 
         }   
         #endregion  
