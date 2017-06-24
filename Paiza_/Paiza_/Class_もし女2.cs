@@ -54,12 +54,14 @@ namespace Paiza_
             Stack<string> l = new Stack<string>();
             foreach (var item in line[0].Split('/'))
             {
+                if (item == "") { continue; }
                 l.Push(item);
             }
 
             Queue<string> path = new Queue<string>();
             foreach (var item in line[1].Split('/'))
             {
+                if (item == "") { continue; }
                 path.Enqueue(item);
             }
 
@@ -69,7 +71,10 @@ namespace Paiza_
                 switch (item)
                 {
                     case "..":
-                        l.Pop();
+                        if ( l.Count() > 0)
+                        {
+                            l.Pop();
+                        }
                         break;
                     case ".":
                         break;
@@ -80,9 +85,41 @@ namespace Paiza_
             }
 
             string ans = "/";
-            if (l.Count() > 0) { ans += string.Join("/", l); }
+            if (l.Count() > 0) { ans += string.Join("/", l.Reverse()); }
 
             Console.WriteLine(ans);
+        }
+    }
+    #endregion
+
+    #region "緑川つばめを窮地から救え　(Bランク問題)"
+    static class Class_もし女_9
+    {
+        public static void Execute()
+        {
+            List<int> l = Console.ReadLine().ToCharArray().Select(s => int.Parse(s.ToString())).ToList();
+            l.Reverse();
+
+            for (int i = 0;i < l.Count(); ++i)
+            {
+                if (l[i] >= 5)
+                {
+                    for (int j = i; j >= 0; --j)
+                    {
+                        l[j] = 0;
+                    }
+                    if (i + 1 == l.Count())
+                    {
+                        l.Add(1);
+                    }
+                    else
+                    {
+                        l[i + 1] += 1;
+                    }
+                }
+            }
+            l.Reverse();
+            Console.WriteLine(string.Join("",l));
         }
     }
     #endregion
