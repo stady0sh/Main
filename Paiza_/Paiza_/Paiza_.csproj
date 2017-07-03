@@ -52,6 +52,7 @@
     <Compile Include="Class_もし女.cs" />
     <Compile Include="Class_もし女2.cs" />
     <Compile Include="Class_ロジックサマナー.cs" />
+    <Compile Include="Class_恋ハカ.cs" />
     <Compile Include="LocalTest.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
