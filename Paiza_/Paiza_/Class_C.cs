@@ -762,5 +762,42 @@ namespace Paiza_
     }
     #endregion
 
+    #region "C041:メダルランキングの作成"
+    static class Class_C_C041
+    {
+        public static void Execute()
+        {
+            var N = int.Parse(System.Console.ReadLine().Trim());
+            List<メダル情報> list = new List<メダル情報>();
+            for (int i = 0;i < N; ++i)
+            {
+                var s = Console.ReadLine().Split(' ').Select(c => int.Parse(c)).ToArray();
+                list.Add(new メダル情報(s[0], s[1], s[2]));
+            }
+
+            foreach (var item in list.OrderByDescending(s => s.金).ThenByDescending(s => s.銀).ThenByDescending(s => s.銅))
+            {
+                Console.WriteLine($"{item.金} {item.銀} {item.銅}");
+            }
+
+
+        }
+
+        private class メダル情報
+        {
+            public int 金 { get; set; }
+            public int 銀 { get; set; }
+            public int 銅 { get; set; }
+            
+            public メダル情報(int 金,int 銀,int 銅)
+            {
+                this.金 = 金;
+                this.銀 = 銀;
+                this.銅 = 銅;
+            }
+        }
+    }
+    #endregion
+
 
 }

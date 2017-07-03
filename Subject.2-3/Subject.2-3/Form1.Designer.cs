@@ -33,7 +33,7 @@
             this.txt年 = new System.Windows.Forms.TextBox();
             this.txt月 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt結果 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -78,20 +78,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // txt結果
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 70);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(260, 180);
-            this.textBox1.TabIndex = 3;
+            this.txt結果.Font = new System.Drawing.Font("ＭＳ ゴシック", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txt結果.Location = new System.Drawing.Point(12, 70);
+            this.txt結果.Multiline = true;
+            this.txt結果.Name = "txt結果";
+            this.txt結果.Size = new System.Drawing.Size(260, 180);
+            this.txt結果.TabIndex = 3;
+            this.txt結果.Text = "            01 02 03\r\n04 05 06 07 08 09 10\r\n11 12 13 ...";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt結果);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt月);
             this.Controls.Add(this.txt年);
@@ -112,7 +114,7 @@
         private System.Windows.Forms.TextBox txt年;
         private System.Windows.Forms.TextBox txt月;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt結果;
     }
 }
 
