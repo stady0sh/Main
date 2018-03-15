@@ -36,6 +36,32 @@ namespace Paiza_
     }
     #endregion
 
+    #region "format"
+    //static class Class_D_format
+    //{
+    //    public static void Execute()
+    //    {
+    //        string result = string.Empty;
+
+
+    //        Console.WriteLine(result);
+    //    }
+    //}
+    #endregion
+
+    #region "D029:サイコロの裏面"
+    static class Class_D_D029
+    {
+        public static void Execute()
+        {
+            string result = string.Empty;
+            int num = int.Parse(System.Console.ReadLine());
+
+            System.Console.WriteLine($"{7-num}");
+        }
+    }
+    #endregion
+
     #region "D046:不思議なタマゴ"
     static class Class_D_D046
     {
