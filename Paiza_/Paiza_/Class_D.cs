@@ -9,7 +9,7 @@ namespace Paiza_
     #region "format"
     static class Class_D_format
     {
-        public static void Execute(string line)
+        public static void Execute()
         {
             string result = string.Empty;
 
@@ -32,6 +32,226 @@ namespace Paiza_
             }
 
             Console.WriteLine(result);
+        }
+    }
+    #endregion
+
+    #region "D046:不思議なタマゴ"
+    static class Class_D_D046
+    {
+        public static void Execute()
+        {
+            var result = Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToList();
+            
+            Console.WriteLine(result.Max());
+        }
+    }
+    #endregion
+
+    #region "D048:台風の間隔"
+    static class Class_D_D048
+    {
+        public static void Execute()
+        {
+            int N = int.Parse(Console.ReadLine().Trim());
+            int n;
+            for (int i = 0; i < 4; ++i)
+            {
+                n = int.Parse(Console.ReadLine().Trim());
+                Console.WriteLine($"{n - N}");
+                N = n;
+            }
+
+        }
+    }
+    #endregion
+
+    #region "D049:◯◯の秋"
+    static class Class_D_D049
+    {
+        public static void Execute()
+        {
+            string conv = "noaki";
+            string s = Console.ReadLine().Trim();
+            
+            Console.WriteLine(s.Replace(conv, ""));
+        }
+    }
+    #endregion
+
+    #region "D050:お月見だんご"
+    static class Class_D_D050
+    {
+        public static void Execute()
+        {
+            List<int> list = Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToList();
+            int cnt = 0;
+            foreach (var item in list)
+            {
+                cnt += (item > 5) ? 5 : item;
+            }
+
+            Console.WriteLine(cnt);
+        }
+    }
+    #endregion
+
+    #region "D051:衣替え"
+    static class Class_D_D051
+    {
+        public static void Execute()
+        {
+            List<string> list = Console.ReadLine().Trim().Split(' ').ToList();
+            string result = (Convert.ToDecimal(list.Count) / 2 <= list.Where(s => s == "W").Count() ? "OK" : "NG");
+
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
+    #region "D052:ピラミッドの作り方"
+    static class Class_D_D052
+    {
+        public static void Execute()
+        {
+            int n = int.Parse(Console.ReadLine().Trim());
+            int cnt = 0;
+            for (int i = 1;i <= n; ++i)
+            {
+                cnt += i;
+            }
+
+
+            Console.WriteLine(cnt);
+        }
+    }
+    #endregion
+
+    #region "D053:トリック・オア・トリート"
+    static class Class_D_D053
+    {
+        public static void Execute()
+        {
+            string line1 = Console.ReadLine().Trim();
+            switch (line1)
+            {
+                case "chocolate":
+                case "candy":
+                    Console.WriteLine("Thanks!");
+                    break;
+                default:
+                    Console.WriteLine("No!");
+                    break;
+            }
+
+
+        }
+    }
+    #endregion
+
+    #region "D054:11/11"
+    static class Class_D_D054
+    {
+        public static void Execute()
+        {
+            var line = Console.ReadLine().Trim();
+
+
+            Console.WriteLine((line.Length >= 11) ? "OK" : $"{11 - line.Length}");
+        }
+    }
+    #endregion
+
+    #region "D055:ワインのキャッチコピー"
+    static class Class_D_D055
+    {
+        public static void Execute()
+        {
+            string result = Console.ReadLine().Trim();
+
+
+            Console.WriteLine($"Best in {result}");
+        }
+    }
+    #endregion
+
+    #region "D056:かまくらづくり"
+    static class Class_D_D056
+    {
+        public static void Execute()
+        {
+            int[] line = Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToArray();
+            int result = Convert.ToInt32(Math.Pow(line[0], 3) - Math.Pow(line[1], 3));
+
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
+    #region "D057:プレゼント選び"
+    static class Class_D_D057
+    {
+        public static void Execute()
+        {
+            var 成績 = int.Parse(Console.ReadLine().Trim());
+            var List = Console.ReadLine().Trim().Split(' ').ToList();
+
+
+
+            Console.WriteLine(List[成績-1]);
+        }
+    }
+    #endregion
+
+    #region "D058:初詣で"
+    static class Class_D_D058
+    {
+        public static void Execute()
+        {
+            var list = Console.ReadLine().Trim().Split(' ').Select(int.Parse).ToList();
+            StringBuilder result = new StringBuilder();
+            int cnt = 0;
+            foreach (var item in list)
+            {
+                string s = (++cnt == 2) ? "B" : "A";
+                for (int i = 0;i < item; ++i)
+                {
+                    result.Append(s);
+                }
+            }
+
+            Console.WriteLine(result);
+        }
+    }
+    #endregion
+
+    #region "D059:トランプ占い"
+    static class Class_D_D059
+    {
+        public static void Execute()
+        {
+            List<string> card = Console.ReadLine().Trim().Split(' ').ToList();
+
+            if (card.Where(s => s == "J").Count() == 2)
+            {
+                card[1] = "Q";
+            }
+
+            Console.WriteLine(string.Join(" ", card));
+        }
+    }
+    #endregion
+
+    #region "D060:AボタンとBボタン"
+    static class Class_D_D060
+    {
+        public static void Execute()
+        {
+            int[] line = Console.ReadLine().Trim().Split(' ').Select(s => int.Parse(s)).ToArray();
+            
+            Console.WriteLine((line[0] - line[1]));
         }
     }
     #endregion
@@ -189,4 +409,20 @@ namespace Paiza_
     }
     #endregion
 
+    #region "D068:雨と晴れの記録"
+    static class Class_D_D068
+    {
+        public static void Execute()
+        {
+            int n = int.Parse(Console.ReadLine());
+            char[] s = Console.ReadLine().ToArray();
+            int S = s.Where(c => c == 'S').Count();
+            int R = s.Where(c => c == 'R').Count();
+
+
+            Console.WriteLine($"{S} {R}");
+        }
+    }
+    #endregion
+    
 }

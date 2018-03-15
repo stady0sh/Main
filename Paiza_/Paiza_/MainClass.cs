@@ -8,13 +8,9 @@ namespace Paiza_
 {
     class MainClass
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            //var line = System.Console.ReadLine().Trim();
-            //Class_D_D062.Execute(line);
-            Class_ロジサマ_4005.Execute();
-
-            Console.ReadLine();
+            Class_恋ハカ_hair2.Execute();
         }
     }
 }
