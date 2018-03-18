@@ -1,79 +1,88 @@
 ﻿Public Class BaseForm
 
+#Region " メンバ変数 "
+	Private _PreviousX As Integer = 0
+	Private _PreviousY As Integer = 0
+#End Region
+
+#Region " イベント "
 	Public Sub New()
 		MyBase.New
 
+		' この呼び出しはデザイナーで必要です。
+		InitializeComponent()
+
+		' InitializeComponent() 呼び出しの後で初期化を追加します。
+
 		For Each ctrl As Control In Me.pnlBody.Controls
-			ctrl.Click += ()
+			AddHandler ctrl.MouseDown, AddressOf Control_MouseDown
+			AddHandler ctrl.MouseMove, AddressOf Control_MouseMove
 		Next
 
 	End Sub
+#Region " pnlBody... "
+	Private Sub pnlBody_MouseDown(sender As Object, e As MouseEventArgs) Handles pnlBody.MouseDown
+		pnlBody.Capture = True
+		Me._PreviousX = pnlBody.PointToScreen(e.Location).X
+		Me._PreviousY = pnlBody.PointToScreen(e.Location).Y
+	End Sub
 
-	'Public Sub New()
-	'   {
-	'       // デザイナー上ではpanel1の中にButtonが水平に並べてあります。
-	'       InitializeComponent();
+	Private Sub pnlBody_MouseMove(sender As Object, e As MouseEventArgs) Handles pnlBody.MouseMove
 
-	'       // パネル内のコントロールにイベントハンドラーを設定
-	'       foreach (Control c in panel1.Controls)
-	'       {
-	'           c.Click += (s, args) => MessageBox.Show(s.ToString());
-	'           c.MouseDown += Button_MouseDown;
-	'           c.MouseMove += Button_MouseMove;
-	'       }
-	'   }
+		If pnlBody.Capture Then
 
-	Private void panel1_MouseDown(Object sender, MouseEventArgs e)
-    {
-        // パネルが普通にクリックされた場合
-        panel1.Capture = true;
-        _PreviousX = panel1.PointToScreen(e.Location).X;
-    }
+			'' X座標の位置修正
+			Dim x = pnlBody.PointToScreen(e.Location).X
+			pnlBody.HorizontalScroll.Value = Math.Min(
+														   Math.Max(
+															   pnlBody.HorizontalScroll.Minimum,
+															   pnlBody.HorizontalScroll.Value + _PreviousX - x),
+															   pnlBody.HorizontalScroll.Maximum)
+			Me._PreviousX = x
 
-    Private void panel1_MouseMove(Object sender, MouseEventArgs e)
-    {
-        If (panel1.Capture)
-        {
-            // パネルのドラッグ処理
-            var x = panel1.PointToScreen(e.Location).X;
-            panel1.HorizontalScroll.Value = Math.Min(
-                                                Math.Max(
-                                                    panel1.HorizontalScroll.Minimum,
-                                                    panel1.HorizontalScroll.Value + _PreviousX - x),
-                                                    panel1.HorizontalScroll.Maximum);
-            _PreviousX = x;
-        }
-    }
+			'' Y座標の位置修正
+			Dim y = pnlBody.PointToScreen(e.Location).Y
+			pnlBody.VerticalScroll.Value = Math.Min(
+														   Math.Max(
+															   pnlBody.VerticalScroll.Minimum,
+															   pnlBody.VerticalScroll.Value + _PreviousY - y),
+															   pnlBody.VerticalScroll.Maximum)
+			Me._PreviousY = y
 
-    Private void panel1_MouseUp(Object sender, MouseEventArgs e)
-    {
-        panel1.Capture = false;
-    }
+		End If
 
-    Private void Button_MouseDown(Object sender, MouseEventArgs e)
-    {
-        // ボタンがクリックされた場合
-        var c = (Control)sender;
+	End Sub
 
-        c.Capture = true;
+	Private Sub pnlBody_MouseUp(sender As Object, e As MouseEventArgs) Handles pnlBody.MouseUp
+		pnlBody.Capture = False
+	End Sub
+#End Region
 
-        _PreviousX = c.PointToScreen(e.Location).X;
-    }
+#Region " Control... "
+	Private Sub Control_MouseDown(sender As Object, e As MouseEventArgs)
+		Dim ctrl As Control = DirectCast(sender, Control)
+		ctrl.Capture = True
+		_PreviousX = ctrl.PointToScreen(e.Location).X
+		_PreviousY = ctrl.PointToScreen(e.Location).Y
+	End Sub
 
-    Private void Button_MouseMove(Object sender, MouseEventArgs e)
-    {
-        var c = (Control)sender;
-        If (c.Capture)
-        {
-            // ボタンが押された状態である程度動いたらpanel1にイベントを付け替える
-            var x = panel1.PointToScreen(e.Location).X;
-            If (Math.Abs(x - _PreviousX) > 3)
-            {
-                c.Capture = false;
-                panel1.Capture = true;
-            }
-        }
-    }
+	Private Sub Control_MouseMove(sender As Object, e As MouseEventArgs)
+
+		Dim ctrl As Control = DirectCast(sender, Control)
+		If (ctrl.Capture) Then
+			'' ボタンが押された状態である程度動いたらpnlBodyにイベントを付け替える
+			Dim x As Integer = pnlBody.PointToScreen(e.Location).X
+			Dim y As Integer = pnlBody.PointToScreen(e.Location).Y
+			If (Math.Abs(x - _PreviousX) > 3) OrElse (Math.Abs(y - _PreviousY) > 3) Then
+				ctrl.Capture = False
+				pnlBody.Capture = True
+			End If
+		End If
+	End Sub
+#End Region
+#End Region
+
+
 
 
 End Class
