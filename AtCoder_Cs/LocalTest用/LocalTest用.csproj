@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AtCoder_Cs\AtCoder_Cs.csproj">
+      <Project>{d6aeddb0-b480-4301-807a-e2a1d4bda635}</Project>
+      <Name>AtCoder_Cs</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

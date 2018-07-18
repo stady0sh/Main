@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AtCoder_Cs;
 
 namespace LocalTest用
 {
@@ -12,8 +13,15 @@ namespace LocalTest用
         {
             while (true)
             {
-                Program cs = new Program();
-                
+                var sw = new System.Diagnostics.Stopwatch();
+                sw.Start();
+
+                AtCoder_Cs.Program.Main();
+
+                sw.Stop();
+
+                Console.WriteLine($"処理時間＝{sw.Elapsed}");
+
             }
 
         }
