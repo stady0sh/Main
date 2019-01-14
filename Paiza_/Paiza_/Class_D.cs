@@ -449,6 +449,20 @@ namespace Paiza_
             Console.WriteLine($"{S} {R}");
         }
     }
-    #endregion
-    
+	#endregion
+
+	#region "D114:税込の価格"
+	static class Class_D_D114
+	{
+		public static void Execute()
+		{
+			var n = System.Console.ReadLine().Split(' ');
+			int par = int.Parse(n[0]);
+			int price = int.Parse(n[1]);
+
+			System.Console.WriteLine(price + System.Math.Floor(price * (par * 0.01)));
+		}
+	}
+	#endregion
+
 }
