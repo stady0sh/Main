@@ -13,11 +13,11 @@ namespace Paiza_
         {
             public static void Execute()
             {
-                string line = Console.ReadLine().Trim();
+                string line = System.Console.ReadLine().Trim();
                 string result = string.Empty;
 
 
-                Console.WriteLine(result);
+                System.Console.WriteLine(result);
             }
         }
         #endregion

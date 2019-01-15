@@ -12,9 +12,8 @@ namespace Paiza_
         public static void Execute()
         {
             string result = string.Empty;
-
-
-            Console.WriteLine(result);
+            
+            System.Console.WriteLine(result);
         }
     }
     #endregion
@@ -463,6 +462,17 @@ namespace Paiza_
 			System.Console.WriteLine(price + System.Math.Floor(price * (par * 0.01)));
 		}
 	}
-	#endregion
+    #endregion
+
+    #region "D098:ボーナスの計算"
+    static class Class_D_D098
+    {
+        public static void Execute()
+        {
+            string[] i = System.Console.ReadLine().Split(' ');
+            System.Console.WriteLine(int.Parse(i[0]) * int.Parse(i[1]));
+        }
+    }
+    #endregion
 
 }

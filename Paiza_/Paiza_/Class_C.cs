@@ -14,9 +14,8 @@ namespace Paiza_
         {
             string result = string.Empty;
             var line = System.Console.ReadLine().Trim();
-
-
-            Console.WriteLine(result);
+            
+            System.Console.WriteLine(result);
         }
     }
     #endregion
@@ -108,6 +107,31 @@ namespace Paiza_
             {
                 Console.WriteLine(str);
             }
+        }
+    }
+    #endregion
+
+    #region "C022:ローソク足"
+    static class Class_C_C022
+    {
+        public static void Execute()
+        {
+            string result = string.Empty;
+            var n = int.Parse(System.Console.ReadLine().Trim());
+            int start = 0;
+            int end = 0;
+            int? min = null;
+            int? max = null;
+            for (int i = 0; i < n; i++)
+            {
+                var num = System.Console.ReadLine().Split(' ');
+                if (i == 0) { start = int.Parse(num[0]); }
+                if (i == n - 1) { end = int.Parse(num[1]); }
+                if (max == null || int.Parse(num[2]) > max) { max = int.Parse(num[2]); }
+                if (min == null || int.Parse(num[3]) < min) { min = int.Parse(num[3]); }
+            }
+
+            System.Console.WriteLine(string.Format("{0} {1} {2} {3}",start,end,max,min));
         }
     }
     #endregion
