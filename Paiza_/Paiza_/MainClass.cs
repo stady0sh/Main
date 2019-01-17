@@ -10,7 +10,7 @@ namespace Paiza_
     {
         public static void Main()
         {
-            Class_C_C022.Execute();
+            Class_B_B012.Execute();
         }
     }
 }

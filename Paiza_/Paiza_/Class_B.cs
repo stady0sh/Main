@@ -20,6 +20,59 @@ namespace Paiza_
     }
     #endregion
 
+    #region "B012:チェックディジット"
+    static class Class_B_B012
+    {
+        public static void Execute()
+        {
+            int num = int.Parse(System.Console.ReadLine());
+            //List<int> result = new List<int>();
+            int[] result = new int[num];
+
+            for (int i = 0; i < num; i++)
+            {
+                string numbers = System.Console.ReadLine();
+                int even = 0;
+                int odd = 0;
+
+                for (int j = 0; j < 15; j++)
+                {
+                    int no = int.Parse(numbers.Substring(j, 1));
+                    if ((j + 2) % 2 == 0)
+                    {
+                        // 偶数
+                        int tmpNo = no * 2;
+                        if (tmpNo.ToString().Length > 1)
+                        {
+                            even += int.Parse(tmpNo.ToString().Substring(0, 1)) +
+                                int.Parse(tmpNo.ToString().Substring(1, 1));
+                        }
+                        else
+                        {
+                            even += tmpNo;
+                        }
+                    }
+                    else
+                    {
+                        // 奇数
+                        odd += no;
+                    }
+
+                }
+                result[i] = even + odd;
+            }
+
+            for (int i = 0; i < num; i++)
+            {
+                int ans = 10 - (result[i] % 10);
+                if (ans == 10) { ans = 0; }
+                System.Console.WriteLine(ans);
+            }
+
+        }
+    }
+    #endregion
+
     #region " B029:地価の予想 "
     static class Class_B_B029
     {
@@ -31,22 +84,22 @@ namespace Paiza_
             int k = int.Parse(Console.ReadLine());  // 平均を求める範囲
             int N = int.Parse(Console.ReadLine());  // 地価情報数
             //Dictionary<string, int> 価格リスト = new Dictionary<string, int>();
-            Dictionary<double,int> 価格リスト = new Dictionary<double, int>();
+            Dictionary<double, int> 価格リスト = new Dictionary<double, int>();
             int[] line2;
-            for (int i = 0;i < N; ++i)
+            for (int i = 0; i < N; ++i)
             {
                 line2 = Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
                 //価格リスト.Add($"{line2[0]}_{line2[1]}", line2[2]);
-                価格リスト.Add(F(x, y, line2[0], line2[1]),line2[2]);
+                価格リスト.Add(F(x, y, line2[0], line2[1]), line2[2]);
             }
 
-            var ave = Math.Round(価格リスト.OrderBy(d => d.Key).Take(k).Select(d => d.Value).Average(),0,MidpointRounding.AwayFromZero);
+            var ave = Math.Round(価格リスト.OrderBy(d => d.Key).Take(k).Select(d => d.Value).Average(), 0, MidpointRounding.AwayFromZero);
             Console.WriteLine(ave);
         }
 
-        private static double F(int x,int y,int x2,int y2)
+        private static double F(int x, int y, int x2, int y2)
         {
-            return Math.Sqrt(Math.Pow(Math.Abs(x - x2),2) + Math.Pow(Math.Abs(y - y2),2));
+            return Math.Sqrt(Math.Pow(Math.Abs(x - x2), 2) + Math.Pow(Math.Abs(y - y2), 2));
         }
     }
     #endregion
@@ -67,7 +120,7 @@ namespace Paiza_
             int j;
             //Dictionary<Cell,char> map = new Dictionary<Cell, char>();
             char[,] map = new char[W, H];
-            for (i = 0;i < H; ++i)
+            for (i = 0; i < H; ++i)
             {
                 line2 = Console.ReadLine().Trim().ToCharArray();
                 for (j = 0; j < W; ++j)
@@ -78,11 +131,11 @@ namespace Paiza_
             }
             // 初期位置
             int[] line3 = Console.ReadLine().Split(' ').Select(s => int.Parse(s)).ToArray();
-            Cell loc = new Cell(line3[0] - 1, line3[1]  -1);
+            Cell loc = new Cell(line3[0] - 1, line3[1] - 1);
             int N = int.Parse(Console.ReadLine());
             int moveX = 0;
             int moveY = 0;
-            for (i = 0;i < N; ++i)
+            for (i = 0; i < N; ++i)
             {
                 switch (Console.ReadLine().ToCharArray().First())
                 {
@@ -116,7 +169,7 @@ namespace Paiza_
 
                     loc = new Cell(loc.x + moveX, loc.y + moveY);
                 }
-                while (map[loc.x,loc.y] == '#');
+                while (map[loc.x, loc.y] == '#');
             }
 
             Console.WriteLine($"{loc.x + 1} {loc.y + 1}");
@@ -128,7 +181,7 @@ namespace Paiza_
         //    return cell.x + H * cell.y;
         //}
 
-        public enum　マス
+        public enum マス
         {
             氷,  //#
             土   //.
@@ -137,7 +190,7 @@ namespace Paiza_
         {
             public int x;
             public int y;
-            public Cell(int x , int y)
+            public Cell(int x, int y)
             {
                 this.x = x;
                 this.y = y;
@@ -155,16 +208,16 @@ namespace Paiza_
             char[] line = Console.ReadLine().ToCharArray();
             List<ExList> list = new List<ExList>();
 
-            foreach(var item in line)
+            foreach (var item in line)
             {
-                if(list.Count > 0 && list.Last().code == item)
+                if (list.Count > 0 && list.Last().code == item)
                 {
                     list.Last().count += 1;
                 }
                 else
                 {
                     list.Add(new ExList(item, 1));
-                }                
+                }
             }
 
             char c = 'w';
@@ -172,9 +225,9 @@ namespace Paiza_
             while (list.Count() > 2)
             {
                 tmpList = new List<ExList>();
-                for (int i = 0;i < list.Count(); ++i)
+                for (int i = 0; i < list.Count(); ++i)
                 {
-                    if(i == 0 || i == list.Count() - 1)
+                    if (i == 0 || i == list.Count() - 1)
                     {
                         tmpList.Add(list[i]);
                     }
@@ -189,14 +242,14 @@ namespace Paiza_
                                 c = 'b';
                                 break;
                         }
-                        tmpList.Add(new ExList(c,list[i].count));
+                        tmpList.Add(new ExList(c, list[i].count));
                     }
                 }
 
                 list = new List<ExList>();
                 foreach (var item in tmpList)
                 {
-                    if(list.Count() > 0 && list.Last().code == item.code)
+                    if (list.Count() > 0 && list.Last().code == item.code)
                     {
                         list.Last().count += item.count;
                     }
@@ -209,9 +262,9 @@ namespace Paiza_
             }
 
             int ans = 0;
-            foreach(var item in list)
+            foreach (var item in list)
             {
-                if(item.code == 'b') { ans = item.count; }
+                if (item.code == 'b') { ans = item.count; }
             }
             Console.WriteLine($"{ans}");
         }
@@ -220,7 +273,7 @@ namespace Paiza_
         {
             public char code;
             public int count;
-            public ExList(char code,int count )
+            public ExList(char code, int count)
             {
                 this.code = code;
                 this.count = count;
@@ -244,7 +297,7 @@ namespace Paiza_
             string[] line2list = new string[8];
             for (i = 0; i < 8; ++i)
             {
-                line2list [i] = Console.ReadLine().Trim();
+                line2list[i] = Console.ReadLine().Trim();
             }
             string[] line3list = new string[8];
             for (i = 0; i < 8; ++i)
@@ -253,13 +306,13 @@ namespace Paiza_
             }
 
             int[] sumList = new int[W];
-            for (i = 0;i < W; ++i)
+            for (i = 0; i < W; ++i)
             {
                 sumList[i] = 計算(i, line2list) + 計算(i, line3list);
             }
 
             string[] 結果 = 結果算出(sumList, W);
-            for (i = 0;i < 8; ++i)
+            for (i = 0; i < 8; ++i)
             {
                 Console.WriteLine(結果[i]);
             }
@@ -269,7 +322,7 @@ namespace Paiza_
         {
             int cnt = 0;
 
-            for (int i = 0;i < 8; ++i)
+            for (int i = 0; i < 8; ++i)
             {
                 switch (i)
                 {
@@ -288,7 +341,7 @@ namespace Paiza_
             return cnt;
         }
 
-        private static string[] 結果算出(int[] sumList,int W)
+        private static string[] 結果算出(int[] sumList, int W)
         {
             string[] 結果list = new string[8];
             char[] 結果;
@@ -324,7 +377,7 @@ namespace Paiza_
                     結果list[i] = 結果[i] + 結果list[i];
                 }
             }
-            
+
             return 結果list;
         }
     }
@@ -344,14 +397,14 @@ namespace Paiza_
             List<List<string>> データList = new List<List<string>>();
             int W = int.Parse(Console.ReadLine().Trim());   // 見出しの個数
             List<string> headerList = Console.ReadLine().Trim().Split(' ').ToList();
-            foreach(var item in headerList)
+            foreach (var item in headerList)
             {
                 データList.Add(new List<string>() { item });   // ヘッダデータを格納
             }
 
             int H = int.Parse(Console.ReadLine().Trim());   // データ行数
             int index = 0;
-            for (int i = 0;i < H; ++i)
+            for (int i = 0; i < H; ++i)
             {
                 List<string> dataList = Console.ReadLine().Trim().Split(' ').ToList();
 
@@ -373,7 +426,7 @@ namespace Paiza_
             // OUTPUT
             int cnt = 1;
             StringBuilder outLine;
-            for(int i = 0;i < H + 1; ++i)
+            for (int i = 0; i < H + 1; ++i)
             {
                 // 2行目　（ヘッダと明細の区切り）のみ実行
                 while (cnt == 2)
@@ -389,7 +442,7 @@ namespace Paiza_
                 }
 
                 outLine = new StringBuilder();
-                for (int j = 0;j < W; ++j)
+                for (int j = 0; j < W; ++j)
                 {
                     outLine.Append("| " + データList[j][i].PadRight(列数List[j], ' ') + " ");
                 }
@@ -414,18 +467,18 @@ namespace Paiza_
             // ｜
             // └――――
             string[] line1 = Console.ReadLine().Trim().Split(' ');  // 座標
-            Dictionary<string,int> 座標 = new Dictionary<string, int>();  // 0:x 1:y
+            Dictionary<string, int> 座標 = new Dictionary<string, int>();  // 0:x 1:y
             座標["X"] = int.Parse(line1[0]);
             座標["Y"] = int.Parse(line1[1]);
 
             int 向き = 0; // Index 
             int new向き = 0; // Index:0から前方向、右方向、後方向、左方向
 
-            string line2 = Console.ReadLine().Trim();   
+            string line2 = Console.ReadLine().Trim();
             List<int> 移動可能距離 = line2.Split(' ').Select(s => int.Parse(s)).ToList(); // Index:0から前方向、右方向、後方向、左方向
 
             int n = int.Parse(Console.ReadLine().Trim());           // 命令数
-            for (int i = 0;i < n; ++i)
+            for (int i = 0; i < n; ++i)
             {
                 string[] line3 = Console.ReadLine().Trim().Split(' ');   // 命令[m(移動),t(方向転換)] 移動方向/転換方向=[F,R,B,L]
                 string 命令 = line3[0];
@@ -434,7 +487,7 @@ namespace Paiza_
                 switch (命令)
                 {
                     case "m": // 移動
-                        座標 = 移動する(座標, 移動可能距離, 方向, 向き,out new向き);
+                        座標 = 移動する(座標, 移動可能距離, 方向, 向き, out new向き);
                         向き = new向き;
                         break;
                     case "t": // 方向転換
@@ -444,11 +497,11 @@ namespace Paiza_
                 }
 
             }
-            
+
             Console.WriteLine($"{座標["X"]} {座標["Y"]}");
         }
 
-        static Dictionary<string, int> 移動する(Dictionary<string, int> 座標, List<int> 移動可能距離, string 方向,int 向き,out int new向き)
+        static Dictionary<string, int> 移動する(Dictionary<string, int> 座標, List<int> 移動可能距離, string 方向, int 向き, out int new向き)
         {
             Dictionary<string, int> new座標 = new Dictionary<string, int>(座標);  // 0:x 1:y
             new向き = 向き; // 変わらない
@@ -491,7 +544,7 @@ namespace Paiza_
 
             Dictionary<string, int> 先月の記録 = new Dictionary<string, int>();
             Dictionary<string, int> 今月の記録 = new Dictionary<string, int>();
-            for (int i = 0;i < N; ++i)
+            for (int i = 0; i < N; ++i)
             {
                 string[] 先月の記録配列 = Console.ReadLine().Trim().Split(' ');
                 先月の記録.Add(先月の記録配列[0], int.Parse(先月の記録配列[1]));
@@ -503,8 +556,8 @@ namespace Paiza_
                 string[] 今月の記録配列 = Console.ReadLine().Trim().Split(' ');
                 今月の記録[今月の記録配列[1]] += int.Parse(今月の記録配列[2]);
             }
-            
-            var 先月成績list = 先月の記録.OrderByDescending(s => s.Value).ThenBy(s => s.Key).Take(T).Select((c,i) => new { Content = c, Index = i });
+
+            var 先月成績list = 先月の記録.OrderByDescending(s => s.Value).ThenBy(s => s.Key).Take(T).Select((c, i) => new { Content = c, Index = i });
             var 成績list = 今月の記録.OrderByDescending(s => s.Value).ThenBy(s => s.Key).Take(T).Select((c, i) => new { Content = c, Index = i });
 
             foreach (var item in 成績list)
@@ -732,7 +785,7 @@ namespace Paiza_
             string result = "miss";
 
             // 総頭数の数だけループさせる
-            for (int i = 1;i < 総頭数; ++i)
+            for (int i = 1; i < 総頭数; ++i)
             {
                 if (総足数 == 鶴の足 * i + 亀の足数 * (総頭数 - i))
                 {
@@ -760,7 +813,7 @@ namespace Paiza_
             List<Dictionary<string, int>> 水溜りList = new List<Dictionary<string, int>>();
             int 水溜りindex = 0;
 
-            for( int i = 0;i < n; ++i)
+            for (int i = 0; i < n; ++i)
             {
                 水溜りList.Add(new Dictionary<string, int>());
                 string[] line = Console.ReadLine().Trim().Split(' ');   // x1 y1 x2 y2
@@ -768,7 +821,7 @@ namespace Paiza_
                 水溜りList[水溜りindex].Add("Y1", int.Parse(line[1]));
                 水溜りList[水溜りindex].Add("X2", int.Parse(line[2]));
                 水溜りList[水溜りindex].Add("Y2", int.Parse(line[3]));
-                
+
                 ++水溜りindex;
             }
 
@@ -800,7 +853,7 @@ namespace Paiza_
 
             }
 
-            foreach ( var item in 進入可Index.OrderBy(o => o).Select(o => o + 1))  // Indexなので+1
+            foreach (var item in 進入可Index.OrderBy(o => o).Select(o => o + 1))  // Indexなので+1
             {
                 Console.WriteLine(item);
             }
@@ -843,7 +896,8 @@ namespace Paiza_
                 対象list.Add(対象列[i].ToString());
             }
 
-            for (int j = 0;j < n; ++j){
+            for (int j = 0; j < n; ++j)
+            {
                 if (変換後list.Count > 0)
                 {
                     対象list = new List<string>(変換後list);
@@ -867,35 +921,35 @@ namespace Paiza_
             Console.WriteLine(string.Join("", 変換後list));
         }
 
-        public static Dictionary<string, string> Init変換list(Dictionary<string, string> 変換list,string 文字列)
+        public static Dictionary<string, string> Init変換list(Dictionary<string, string> 変換list, string 文字列)
         {
             int i = 0;
-            変換list.Add(文字列.Substring(i++,1), "a");
-            変換list.Add(文字列.Substring(i++,1), "b");
-            変換list.Add(文字列.Substring(i++,1), "c");
-            変換list.Add(文字列.Substring(i++,1), "d");
-            変換list.Add(文字列.Substring(i++,1), "e");
-            変換list.Add(文字列.Substring(i++,1), "f");
-            変換list.Add(文字列.Substring(i++,1), "g");
-            変換list.Add(文字列.Substring(i++,1), "h");
-            変換list.Add(文字列.Substring(i++,1), "i");
-            変換list.Add(文字列.Substring(i++,1), "j");
-            変換list.Add(文字列.Substring(i++,1), "k");
-            変換list.Add(文字列.Substring(i++,1), "l");
-            変換list.Add(文字列.Substring(i++,1), "m");
-            変換list.Add(文字列.Substring(i++,1), "n");
-            変換list.Add(文字列.Substring(i++,1), "o");
-            変換list.Add(文字列.Substring(i++,1), "p");
-            変換list.Add(文字列.Substring(i++,1), "q");
-            変換list.Add(文字列.Substring(i++,1), "r");
-            変換list.Add(文字列.Substring(i++,1), "s");
-            変換list.Add(文字列.Substring(i++,1), "t");
-            変換list.Add(文字列.Substring(i++,1), "u");
-            変換list.Add(文字列.Substring(i++,1), "v");
-            変換list.Add(文字列.Substring(i++,1), "w");
-            変換list.Add(文字列.Substring(i++,1), "x");
-            変換list.Add(文字列.Substring(i++,1), "y");
-            変換list.Add(文字列.Substring(i++,1), "z");
+            変換list.Add(文字列.Substring(i++, 1), "a");
+            変換list.Add(文字列.Substring(i++, 1), "b");
+            変換list.Add(文字列.Substring(i++, 1), "c");
+            変換list.Add(文字列.Substring(i++, 1), "d");
+            変換list.Add(文字列.Substring(i++, 1), "e");
+            変換list.Add(文字列.Substring(i++, 1), "f");
+            変換list.Add(文字列.Substring(i++, 1), "g");
+            変換list.Add(文字列.Substring(i++, 1), "h");
+            変換list.Add(文字列.Substring(i++, 1), "i");
+            変換list.Add(文字列.Substring(i++, 1), "j");
+            変換list.Add(文字列.Substring(i++, 1), "k");
+            変換list.Add(文字列.Substring(i++, 1), "l");
+            変換list.Add(文字列.Substring(i++, 1), "m");
+            変換list.Add(文字列.Substring(i++, 1), "n");
+            変換list.Add(文字列.Substring(i++, 1), "o");
+            変換list.Add(文字列.Substring(i++, 1), "p");
+            変換list.Add(文字列.Substring(i++, 1), "q");
+            変換list.Add(文字列.Substring(i++, 1), "r");
+            変換list.Add(文字列.Substring(i++, 1), "s");
+            変換list.Add(文字列.Substring(i++, 1), "t");
+            変換list.Add(文字列.Substring(i++, 1), "u");
+            変換list.Add(文字列.Substring(i++, 1), "v");
+            変換list.Add(文字列.Substring(i++, 1), "w");
+            変換list.Add(文字列.Substring(i++, 1), "x");
+            変換list.Add(文字列.Substring(i++, 1), "y");
+            変換list.Add(文字列.Substring(i++, 1), "z");
 
             return 変換list;
         }
@@ -913,13 +967,13 @@ namespace Paiza_
 
             // 図形の取得
             List<string> list = new List<string>();
-            for (int i = 0;i < n; ++i)
+            for (int i = 0; i < n; ++i)
             {
                 list.Add(Console.ReadLine().Trim());
             }
 
             // 生成
-            for (int j = 1;j <= k; ++j)
+            for (int j = 1; j <= k; ++j)
             {
                 int cnt = 0;
                 List<string> newList = new List<string>();
@@ -936,7 +990,7 @@ namespace Paiza_
                         tmpList.Add(new List<string>());
                     }
 
-                    for (int m = 0;m < item.Length; ++m)
+                    for (int m = 0; m < item.Length; ++m)
                     {
 
                         int o = 0;
@@ -954,7 +1008,7 @@ namespace Paiza_
                                 tmpList[o++].Add(item2);
                             }
                         }
-                        
+
                     }
 
                     foreach (var item2 in tmpList)
@@ -966,7 +1020,7 @@ namespace Paiza_
                 }
 
                 list = newList;
-                
+
             }
 
 
@@ -974,7 +1028,7 @@ namespace Paiza_
             {
                 Console.WriteLine(item);
             }
-            
+
         }
     }
     #endregion
