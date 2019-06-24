@@ -10,7 +10,7 @@ namespace AtCoder_Cs
     public class Program
     {
 
-        public static void Main()
+        public static void Test()
         {
             var l = ReadArrayString();
             var deg = l[0]; // 風向き(0~3600)

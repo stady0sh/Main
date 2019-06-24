@@ -16,9 +16,11 @@ namespace LocalTest用
                 var sw = new System.Diagnostics.Stopwatch();
                 sw.Start();
 
-                AtCoder_Cs.Program.Main();
+				//AtCoder_Cs.Program.Main();
+				ABC081.Main();
 
-                sw.Stop();
+
+				sw.Stop();
 
                 Console.WriteLine($"処理時間＝{sw.Elapsed}");
 
