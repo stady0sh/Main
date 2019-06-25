@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ABC081.cs" />
-    <Compile Include="ABC86.cs" />
+    <Compile Include="ABC086.cs" />
+    <Compile Include="ABC087.cs" />
+    <Compile Include="Temp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

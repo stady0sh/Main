@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace AtCoder_Cs
 {
-    public class Program
+    class ABC083
     {
-        public static void Main()
+
+        public static void B()
         {
             var lst = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
             int res = 0;
@@ -16,10 +17,10 @@ namespace AtCoder_Cs
             int min = lst[1];
             int max = lst[2];
 
-            for (int i = 0;i <= lst[0]; i++)
+            for (int i = 0; i <= lst[0]; i++)
             {
                 int sum = 0;
-                for (int j = 0;j < i.ToString().Length; j++)
+                for (int j = 0; j < i.ToString().Length; j++)
                 {
                     sum += int.Parse(i.ToString().Substring(j, 1));
                 }
@@ -32,5 +33,6 @@ namespace AtCoder_Cs
 
             Console.WriteLine($"{res}");
         }
+
     }
 }

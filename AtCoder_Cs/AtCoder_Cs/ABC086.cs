@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AtCoder_Cs
 {
-	public class ABC86
+	public class ABC086
 	{
-		public static void ABC86_A()
+		public static void A()
 		{
 			var lst = Console.ReadLine().Split(' ');
 			var res = int.Parse(lst[0]) * int.Parse(lst[1]);
