@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace AtCoder_Cs
 {
-    public class Program
+    class ABC085
     {
-        public static void Main()
+
+
+        public static void B()
         {
             var N = int.Parse(Console.ReadLine());
             var lst = new HashSet<int>();
@@ -20,5 +22,7 @@ namespace AtCoder_Cs
 
             Console.WriteLine($"{lst.Count()}");
         }
+
+
     }
 }
