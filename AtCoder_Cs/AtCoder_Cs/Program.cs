@@ -8,17 +8,50 @@ namespace AtCoder_Cs
 {
     public class Program
     {
+        private static string s1 = "dream";
+        private static string s2 = "dreamer";
+        private static string s3 = "erase";
+        private static string s4 = "eraser";
+
+        private static string S { get; set; }
+
         public static void Main()
         {
-            var N = int.Parse(Console.ReadLine());
-            var lst = new HashSet<int>();
+            S = Console.ReadLine();
 
-            for (int i = 0; i < N; i++)
+            bool ret = NextWith(S.Length);
+
+            string ans = ret ? "YES" : "NO";
+            Console.WriteLine($"{ans}");
+
+        }
+
+        private static bool NextWith(int len)
+        {
+
+            if (S.Substring(0 , len).Length == 0)
             {
-                lst.Add(int.Parse(Console.ReadLine()));
+                return true;
             }
 
-            Console.WriteLine($"{lst.Count()}");
+            if (S.Substring(0 , len).EndsWith(s1))
+            {
+                if (NextWith(len - s1.Length)) return true;
+            }
+            if (S.Substring(0, len).EndsWith(s2))
+            {
+                if (NextWith(len - s2.Length)) return true;
+            }
+            if (S.Substring(0, len).EndsWith(s3))
+            {
+                if (NextWith(len - s3.Length)) return true;
+            }
+            if (S.Substring(0, len).EndsWith(s4))
+            {
+                if (NextWith(len - s4.Length)) return true;
+            }
+
+            return false;
         }
     }
 }
