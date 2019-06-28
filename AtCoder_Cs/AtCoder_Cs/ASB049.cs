@@ -10,45 +10,47 @@ namespace AtCoder_Cs
     {
 
         #region C
-        static string s1 = "dream";
-        static string s2 = "dreamer";
-        static string s3 = "erase";
-        static string s4 = "eraser";
+        private static string s1 = "dream";
+        private static string s2 = "dreamer";
+        private static string s3 = "erase";
+        private static string s4 = "eraser";
+
+        private static string S { get; set; }
 
         public static void C()
         {
-            string S = Console.ReadLine();
+            S = Console.ReadLine();
 
-            bool ret = NextWith(S);
+            bool ret = NextWith(S.Length);
 
             string ans = ret ? "YES" : "NO";
             Console.WriteLine($"{ans}");
 
         }
 
-        private static bool NextWith(string S)
+        private static bool NextWith(int len)
         {
 
-            if (S.Length == 0)
+            if (S.Substring(0, len).Length == 0)
             {
                 return true;
             }
 
-            if (S.Length == s1.Length && S.EndsWith(s1))
+            if (S.Substring(0, len).EndsWith(s1))
             {
-                if (NextWith(S.Substring(S.Length - s1.Length))) return true;
+                if (NextWith(len - s1.Length)) return true;
             }
-            if (S.Length == s2.Length && S.EndsWith(s2))
+            if (S.Substring(0, len).EndsWith(s2))
             {
-                if (NextWith(S.Substring(S.Length - s2.Length))) return true;
+                if (NextWith(len - s2.Length)) return true;
             }
-            if (S.Length == s3.Length && S.EndsWith(s3))
+            if (S.Substring(0, len).EndsWith(s3))
             {
-                if (NextWith(S.Substring(S.Length - s3.Length))) return true;
+                if (NextWith(len - s3.Length)) return true;
             }
-            if (S.Length == s4.Length && S.EndsWith(s4))
+            if (S.Substring(0, len).EndsWith(s4))
             {
-                if (NextWith(S.Substring(S.Length - s4.Length))) return true;
+                if (NextWith(len - s4.Length)) return true;
             }
 
             return false;

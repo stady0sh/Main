@@ -8,50 +8,66 @@ namespace AtCoder_Cs
 {
     public class Program
     {
+
         private static string s1 = "dream";
         private static string s2 = "dreamer";
         private static string s3 = "erase";
         private static string s4 = "eraser";
 
         private static string S { get; set; }
+        private static Dictionary<int, bool> memo;
 
         public static void Main()
         {
             S = Console.ReadLine();
 
-            bool ret = NextWith(S.Length);
+            memo = new Dictionary<int, bool>();
+
+            bool ret = NextWith(0);
 
             string ans = ret ? "YES" : "NO";
             Console.WriteLine($"{ans}");
 
         }
 
-        private static bool NextWith(int len)
+        private static bool NextWith(int index)
         {
 
-            if (S.Substring(0 , len).Length == 0)
+            if (index == S.Length)
             {
                 return true;
             }
 
-            if (S.Substring(0 , len).EndsWith(s1))
+            if (!memo.ContainsKey(index))
             {
-                if (NextWith(len - s1.Length)) return true;
+                memo[index] = NextWithCode(index);
             }
-            if (S.Substring(0, len).EndsWith(s2))
+
+            return memo[index];
+        }
+
+        private static bool NextWithCode(int index)
+        {
+            if (S.Substring(index).StartsWith(s1))
             {
-                if (NextWith(len - s2.Length)) return true;
+                if (NextWith(index + s1.Length)) return true;
             }
-            if (S.Substring(0, len).EndsWith(s3))
+            if (S.Substring(index).StartsWith(s2))
             {
-                if (NextWith(len - s3.Length)) return true;
+                if (NextWith(index + s2.Length)) return true;
             }
-            if (S.Substring(0, len).EndsWith(s4))
+            if (S.Substring(index).StartsWith(s3))
             {
-                if (NextWith(len - s4.Length)) return true;
+                if (NextWith(index + s3.Length)) return true;
+            }
+            if (S.Substring( index).StartsWith(s4))
+            {
+                if (NextWith(index + s4.Length)) return true;
             }
 
             return false;
+
         }
+
     }
 }
