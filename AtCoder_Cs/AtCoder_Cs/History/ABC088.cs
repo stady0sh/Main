@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace AtCoder_Cs
 {
-    class ABC88
+    class ABC088
     {
+        #region A
 
+        #endregion
+
+        #region B
         public static void B()
         {
             var cnt = int.Parse(Console.ReadLine());
@@ -34,6 +38,15 @@ namespace AtCoder_Cs
 
             Console.WriteLine($"{A - B}");
         }
+        #endregion
+
+        #region C
+
+        #endregion
+
+        #region D
+
+        #endregion
 
     }
 }

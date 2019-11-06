@@ -42,15 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABC081.cs" />
-    <Compile Include="ABC083.cs" />
-    <Compile Include="ABC085.cs" />
-    <Compile Include="ABC086.cs" />
-    <Compile Include="ABC087.cs" />
-    <Compile Include="ABC88.cs" />
-    <Compile Include="ASB049.cs" />
-    <Compile Include="Temp.cs" />
+    <Compile Include="History\ABC081.cs" />
+    <Compile Include="History\ABC083.cs" />
+    <Compile Include="History\ABC085.cs" />
+    <Compile Include="History\ABC086.cs" />
+    <Compile Include="History\ABC087.cs" />
+    <Compile Include="History\ABC144.cs" />
+    <Compile Include="History\ABC088.cs" />
+    <Compile Include="History\ASB049.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Temp.cs" />
+    <Compile Include="Program_tmp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

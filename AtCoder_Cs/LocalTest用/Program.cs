@@ -16,9 +16,7 @@ namespace LocalTest用
                 var sw = new System.Diagnostics.Stopwatch();
                 sw.Start();
 
-                //AtCoder_Cs.Program.Main();
                 AtCoder_Cs.Program.Main();
-
 
 				sw.Stop();
 

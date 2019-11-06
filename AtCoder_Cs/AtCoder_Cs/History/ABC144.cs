@@ -6,9 +6,29 @@ using System.Threading.Tasks;
 
 namespace AtCoder_Cs
 {
-    public class Program
+    public class ABC144
     {
-        public static void Main()
+
+        #region A
+        public static void A()
+        {
+            var h = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            int m = h[0] * h[1];
+
+            string ret = "Odd";
+
+            if (m % 2 == 0)
+            {
+                ret = "Even";
+            }
+
+            Console.WriteLine($"{ret}");
+
+        }
+        #endregion
+
+        #region B
+        public static void B()
         {
             var N = int.Parse(Console.ReadLine());
             string ret = "No";
@@ -36,5 +56,15 @@ namespace AtCoder_Cs
 
             return lst.Contains(N);
         }
+        #endregion
+
+        #region C
+
+        #endregion
+
+        #region D
+
+        #endregion
+
     }
 }
