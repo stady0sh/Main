@@ -12,18 +12,13 @@ namespace AtCoder_Cs
         #region A
         public static void A()
         {
-            var h = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
-            int m = h[0] * h[1];
-
-            string ret = "Odd";
-
-            if (m % 2 == 0)
+            var N = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            int ret = -1;
+            if (9 >= N[0] && N[0] >= 1 && 9 >= N[1] && N[1] >= 1)
             {
-                ret = "Even";
+                ret = N[0] * N[1];
             }
-
             Console.WriteLine($"{ret}");
-
         }
         #endregion
 
@@ -59,7 +54,24 @@ namespace AtCoder_Cs
         #endregion
 
         #region C
+        public static void C()
+        {
+            var N = long.Parse(Console.ReadLine());
+            long ret = N;
 
+
+            for (long i = 1; i * i <= N; i++)
+            {
+                if (N % i == 0)
+                {
+                    long r = (i - 1) + (N / i) - 1;
+                    if (r < ret) { ret = r; }
+                    //break;
+                }
+            }
+
+            Console.WriteLine($"{ret}");
+        }
         #endregion
 
         #region D

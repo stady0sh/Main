@@ -38,6 +38,7 @@ namespace AtCoder_Cs
 
             Console.WriteLine($"{A - B}");
         }
+
         #endregion
 
         #region C

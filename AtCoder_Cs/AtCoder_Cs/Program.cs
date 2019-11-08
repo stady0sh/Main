@@ -10,31 +10,22 @@ namespace AtCoder_Cs
     {
         public static void Main()
         {
-            var N = int.Parse(Console.ReadLine());
-            string ret = "No";
+            var N = long.Parse(Console.ReadLine());
+            long ret = N;
 
-            if (IsHitPattern(N))
+
+            for (long i = 1;i * i <= N;i++)
             {
-                ret = "Yes";
+                if (N % i == 0)
+                {
+                    long r = (i - 1) + (N / i) - 1;
+                    if(r < ret) { ret = r; }
+                    //break;
+                }
             }
+
             Console.WriteLine($"{ret}");
         }
-
-        private static bool IsHitPattern(int N)
-        {
-            var num = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            var lst = new HashSet<int>();
-
-            foreach (int i in num)
-            {
-                foreach (int j in num)
-                {
-                    lst.Add(i * j);
-                }
-
-            }
-
-            return lst.Contains(N);
-        }
     }
+
 }
